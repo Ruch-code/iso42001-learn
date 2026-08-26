@@ -1,0 +1,322 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="30-45 Day Implementation Roadmap" activePage="roadmap">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <div class="inline-flex items-center gap-2 bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+        🚀 Fast-Track Implementation
+      </div>
+      <h1 class="text-3xl font-bold text-gray-900 mb-3">30-45 Day ISO 42001 Roadmap</h1>
+      <p class="text-gray-600 text-lg">An accelerated roadmap for organizations that need to achieve ISO 42001 compliance quickly. This assumes existing management system (e.g., ISO 27001) and dedicated project resources.</p>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8">
+      <div class="flex items-start gap-3">
+        <span class="text-amber-600 text-xl">⚠️</span>
+        <div>
+          <h3 class="font-semibold text-amber-900 text-sm">Important Assumptions</h3>
+          <ul class="text-sm text-amber-800 mt-1 space-y-1">
+            <li>• Client already has ISO 27001 or similar management system in place</li>
+            <li>• Dedicated project team (3-5 people) assigned full-time</li>
+            <li>• Executive sponsorship secured before Day 1</li>
+            <li>• Scope is limited to 3-5 critical AI systems</li>
+            <li>• Certification audit scheduled for Day 40-45</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 1 -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 bg-red-600 text-white rounded-xl flex items-center justify-center font-bold text-lg">W1</div>
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">Week 1: Foundation & Kickoff</h2>
+          <p class="text-sm text-gray-500">Days 1-7</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 ml-0 md:ml-15">
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span> Key Activities
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• Kickoff meeting with executive sponsor and core team</li>
+            <li>• Define scope and boundaries of AIMS</li>
+            <li>• Conduct AI system inventory (identify all AI systems)</li>
+            <li>• Map existing ISO 27001 controls to ISO 42001</li>
+            <li>• Assign roles: AI governance board, AI system owners</li>
+            <li>• Review existing policies for reuse/extension</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full"></span> Deliverables
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>✅ Project charter and timeline</li>
+            <li>✅ AI system inventory register</li>
+            <li>✅ Gap analysis report (initial)</li>
+            <li>✅ Scope document (Clause 4.3)</li>
+            <li>✅ RACI matrix for AI governance</li>
+            <li>✅ Reuse map (ISO 27001 → 42001)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 2 -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 bg-orange-600 text-white rounded-xl flex items-center justify-center font-bold text-lg">W2</div>
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">Week 2: Policy, Governance & Risk</h2>
+          <p class="text-sm text-gray-500">Days 8-14</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 ml-0 md:ml-15">
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span> Key Activities
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• Draft AI policy (adapt from infosec policy)</li>
+            <li>• Establish AI governance board — first meeting</li>
+            <li>• Define AI risk assessment methodology</li>
+            <li>• Conduct AI risk assessment for in-scope systems</li>
+            <li>• Start AI system impact assessments (AIIA)</li>
+            <li>• Set measurable AI objectives</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full"></span> Deliverables
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>✅ AI policy (draft → approved by Day 12)</li>
+            <li>✅ AI risk assessment report</li>
+            <li>✅ AI risk register with treatment plans</li>
+            <li>✅ AI system impact assessments (1-2 critical systems)</li>
+            <li>✅ AI objectives and KPIs</li>
+            <li>✅ Governance board terms of reference</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 3 -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 bg-yellow-500 text-white rounded-xl flex items-center justify-center font-bold text-lg">W3</div>
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">Week 3: Controls Implementation</h2>
+          <p class="text-sm text-gray-500">Days 15-21</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 ml-0 md:ml-15">
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span> Key Activities
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• Implement Annex A controls (data governance, lifecycle, monitoring)</li>
+            <li>• Create AI system use policy and acceptable use guidelines</li>
+            <li>• Set up human oversight mechanisms</li>
+            <li>• Establish third-party AI risk assessment process</li>
+            <li>• Review/update vendor contracts with AI clauses</li>
+            <li>• Implement AI performance monitoring</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full"></span> Deliverables
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>✅ Data governance framework for AI</li>
+            <li>✅ AI system use policy</li>
+            <li>✅ Human oversight procedures</li>
+            <li>✅ Third-party AI risk assessment results</li>
+            <li>✅ Updated vendor contracts (AI clauses)</li>
+            <li>✅ Monitoring dashboards and alert configuration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 4 -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-lg">W4</div>
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">Week 4: Documentation & Training</h2>
+          <p class="text-sm text-gray-500">Days 22-28</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 ml-0 md:ml-15">
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span> Key Activities
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• Finalize all required documented information</li>
+            <li>• Conduct AI awareness training for all staff</li>
+            <li>• Role-specific training for AI governance team</li>
+            <li>• Complete remaining AI system impact assessments</li>
+            <li>• Establish incident reporting process</li>
+            <li>• Set up communication channels (internal/external)</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full"></span> Deliverables
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>✅ Complete documentation package</li>
+            <li>✅ Training records and attendance logs</li>
+            <li>✅ Training materials and slides</li>
+            <li>✅ Remaining AIIAs completed</li>
+            <li>✅ Incident response procedures</li>
+            <li>✅ Communication plan documented</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 5-6 -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center font-bold text-lg">W5-6</div>
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">Weeks 5-6: Operate, Audit & Fix</h2>
+          <p class="text-sm text-gray-500">Days 29-42</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 ml-0 md:ml-15">
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span> Key Activities
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• Run the AIMS — collect evidence of operation (2+ weeks)</li>
+            <li>• Conduct internal audit (1-2 days)</li>
+            <li>• Address all internal audit findings</li>
+            <li>• Conduct management review meeting</li>
+            <li>• Fix any remaining nonconformities</li>
+            <li>• Conduct pre-assessment audit (optional but recommended)</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full"></span> Deliverables
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>✅ Operational evidence (monitoring logs, meeting records)</li>
+            <li>✅ Internal audit report and findings</li>
+            <li>✅ Corrective action records</li>
+            <li>✅ Management review minutes</li>
+            <li>✅ Pre-assessment audit report (if done)</li>
+            <li>✅ Final evidence package</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 7 -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 bg-green-600 text-white rounded-xl flex items-center justify-center font-bold text-lg">W7</div>
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">Week 7: Certification Audit</h2>
+          <p class="text-sm text-gray-500">Days 43-45</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 ml-0 md:ml-15">
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span> Key Activities
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• Stage 1 audit (documentation review) — 1 day</li>
+            <li>• Address any Stage 1 findings</li>
+            <li>• Stage 2 audit (implementation audit) — 1-2 days</li>
+            <li>• Address any Stage 2 findings</li>
+            <li>• Receive certification decision</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full"></span> Deliverables
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>✅ Stage 1 audit report</li>
+            <li>✅ Stage 2 audit report</li>
+            <li>✅ Corrective actions for any findings</li>
+            <li>🎉 ISO 42001 Certificate</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post Certification -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 bg-gray-800 text-white rounded-xl flex items-center justify-center font-bold text-lg">+</div>
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">Post-Certification (Ongoing)</h2>
+          <p class="text-sm text-gray-500">After Day 45</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-5 ml-0 md:ml-15">
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li>• <strong>Surveillance audits</strong> — annually (typically Day 365 and Day 730)</li>
+          <li>• <strong>Management review</strong> — at least annually</li>
+          <li>• <strong>Internal audit</strong> — at least annually</li>
+          <li>• <strong>AI risk reassessment</strong> — when significant changes occur</li>
+          <li>• <strong>Scope expansion</strong> — add additional AI systems incrementally</li>
+          <li>• <strong>Continual improvement</strong> — address findings, update practices</li>
+          <li>• <strong>Recertification</strong> — every 3 years</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Resource Requirements -->
+    <div class="bg-gray-900 text-white rounded-2xl p-8">
+      <h2 class="text-2xl font-bold mb-6">Resource Requirements for 30-45 Day Track</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div>
+          <h3 class="font-semibold text-blue-300 mb-3">👤 People</h3>
+          <ul class="space-y-1 text-sm text-gray-300">
+            <li>• Executive sponsor (2-4 hrs/week)</li>
+            <li>• Project lead (full-time)</li>
+            <li>• AI/ML engineer (full-time)</li>
+            <li>• Compliance/Risk specialist (full-time)</li>
+            <li>• IT/Security representative (part-time)</li>
+            <li>• Legal representative (as needed)</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-blue-300 mb-3">💰 Budget Estimate</h3>
+          <ul class="space-y-1 text-sm text-gray-300">
+            <li>• Consulting support: $15K-40K</li>
+            <li>• Certification audit: $10K-25K</li>
+            <li>• Tools & platform: $2K-5K</li>
+            <li>• Training: $2K-5K</li>
+            <li>• Internal resources: varies</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-blue-300 mb-3">🛠️ Tools Needed</h3>
+          <ul class="space-y-1 text-sm text-gray-300">
+            <li>• Document management system</li>
+            <li>• Risk management tool</li>
+            <li>• AI monitoring platform</li>
+            <li>• Audit management tool</li>
+            <li>• Training platform</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

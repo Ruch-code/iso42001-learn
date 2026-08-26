@@ -1,0 +1,347 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="ISO 27001 vs ISO 42001 Overlap" activePage="overlap">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <div class="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+        🔗 Integration Guide
+      </div>
+      <h1 class="text-3xl font-bold text-gray-900 mb-3">ISO 27001 ↔ ISO 42001 Control Overlap</h1>
+      <p class="text-gray-600 text-lg">If your client already has ISO 27001, you can reuse up to <strong>60-70%</strong> of existing controls. Here's the mapping.</p>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-8">
+      <div class="flex items-start gap-3">
+        <span class="text-green-600 text-xl">💡</span>
+        <div>
+          <h3 class="font-semibold text-green-900 text-sm">Key Insight</h3>
+          <p class="text-sm text-green-800 mt-1">ISO 42001 follows the same Annex SL structure as ISO 27001. Many clauses (4-10) and Annex A controls have direct parallels. Clients with ISO 27001 certification can significantly accelerate ISO 42001 implementation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clause Overlap Table -->
+    <div class="mb-10">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Clauses 4-10: Management System Overlap</h2>
+      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50 border-b border-gray-200">
+            <tr>
+              <th class="text-left p-4 font-semibold text-gray-900">Clause</th>
+              <th class="text-left p-4 font-semibold text-gray-900">ISO 27001</th>
+              <th class="text-left p-4 font-semibold text-gray-900">ISO 42001</th>
+              <th class="text-left p-4 font-semibold text-gray-900">Overlap</th>
+              <th class="text-left p-4 font-semibold text-gray-900">What to Add</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">4.1</td>
+              <td class="p-4 text-gray-600">Context of Organization</td>
+              <td class="p-4 text-gray-600">Context of Organization</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
+              <td class="p-4 text-gray-600">Add AI-specific internal/external issues (AI regulations, AI talent market, AI ethics landscape)</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">4.2</td>
+              <td class="p-4 text-gray-600">Interested Parties</td>
+              <td class="p-4 text-gray-600">Interested Parties</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
+              <td class="p-4 text-gray-600">Add AI-specific stakeholders (AI ethics boards, affected communities, AI regulators)</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">4.3</td>
+              <td class="p-4 text-gray-600">Scope</td>
+              <td class="p-4 text-gray-600">Scope</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
+              <td class="p-4 text-gray-600">Define scope in terms of AI systems and AI-related activities</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">5.1</td>
+              <td class="p-4 text-gray-600">Leadership & Commitment</td>
+              <td class="p-4 text-gray-600">Leadership & Commitment</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
+              <td class="p-4 text-gray-600">Demonstrate AI-specific leadership commitment</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">5.2</td>
+              <td class="p-4 text-gray-600">Information Security Policy</td>
+              <td class="p-4 text-gray-600">AI Policy</td>
+              <td class="p-4"><span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded text-xs font-medium">Medium</span></td>
+              <td class="p-4 text-gray-600">Create separate AI policy OR extend existing policy with AI-specific commitments</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">5.3</td>
+              <td class="p-4 text-gray-600">Roles & Responsibilities</td>
+              <td class="p-4 text-gray-600">Roles & Responsibilities</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
+              <td class="p-4 text-gray-600">Add AI governance roles (AI governance board, AI system owners, data stewards)</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">6.1</td>
+              <td class="p-4 text-gray-600">Risk Assessment</td>
+              <td class="p-4 text-gray-600">Risk Assessment + AIIA</td>
+              <td class="p-4"><span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded text-xs font-medium">Medium</span></td>
+              <td class="p-4 text-gray-600">Extend risk methodology for AI-specific risks; add AI System Impact Assessment</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">7.1-7.5</td>
+              <td class="p-4 text-gray-600">Support</td>
+              <td class="p-4 text-gray-600">Support</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
+              <td class="p-4 text-gray-600">Add AI competence requirements and AI-specific training</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">8.1-8.2</td>
+              <td class="p-4 text-gray-600">Operational Planning</td>
+              <td class="p-4 text-gray-600">Operational Planning</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
+              <td class="p-4 text-gray-600">Add AI-specific operational controls (lifecycle, data, monitoring)</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">8.3</td>
+              <td class="p-4 text-gray-600">Risk Treatment</td>
+              <td class="p-4 text-gray-600">Risk Treatment</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
+              <td class="p-4 text-gray-600">Apply existing treatment process to AI risks</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">9.1-9.3</td>
+              <td class="p-4 text-gray-600">Performance Evaluation</td>
+              <td class="p-4 text-gray-600">Performance Evaluation</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
+              <td class="p-4 text-gray-600">Include AI metrics in monitoring; add AI items to management review agenda</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-mono font-bold text-blue-600">10.1-10.2</td>
+              <td class="p-4 text-gray-600">Improvement</td>
+              <td class="p-4 text-gray-600">Improvement</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
+              <td class="p-4 text-gray-600">Include AI incidents in corrective action process</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Annex A Overlap -->
+    <div class="mb-10">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Annex A: Control-by-Control Mapping</h2>
+
+      <div class="space-y-4">
+        <!-- High Overlap -->
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-bold text-green-800 mb-3 flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-green-500"></span> High Overlap — Reuse Existing Controls
+          </h3>
+          <p class="text-sm text-gray-600 mb-3">These ISO 42001 controls have direct equivalents in ISO 27001 Annex A. Existing implementations can be leveraged with minor AI-specific additions.</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="text-left p-3 font-semibold">ISO 42001 Control</th>
+                  <th class="text-left p-3 font-semibold">ISO 27001 Equivalent</th>
+                  <th class="text-left p-3 font-semibold">What to Add</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr>
+                  <td class="p-3 font-mono">A.3.1</td>
+                  <td class="p-3 text-gray-600">A.5.1 Policies for information security</td>
+                  <td class="p-3 text-gray-600">AI governance roles and responsibilities</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.3.3</td>
+                  <td class="p-3 text-gray-600">A.5.4 Information security in project management</td>
+                  <td class="p-3 text-gray-600">AI-specific reporting metrics</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.4.1</td>
+                  <td class="p-3 text-gray-600">A.6.1 Screening / A.6.2 Terms & conditions</td>
+                  <td class="p-3 text-gray-600">AI competence requirements</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.4.2</td>
+                  <td class="p-3 text-gray-600">A.6.3 Information security awareness, education & training</td>
+                  <td class="p-3 text-gray-600">AI-specific training content (ethics, bias, lifecycle)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.6.1</td>
+                  <td class="p-3 text-gray-600">A.8.1 User endpoint devices / A.8.2 Privileged access rights</td>
+                  <td class="p-3 text-gray-600">Data governance for AI (lineage, quality, bias)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.7.2</td>
+                  <td class="p-3 text-gray-600">A.6.8 Information security incident management</td>
+                  <td class="p-3 text-gray-600">AI-specific incident categories and escalation</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.8.5</td>
+                  <td class="p-3 text-gray-600">A.5.30 ICT readiness for business continuity</td>
+                  <td class="p-3 text-gray-600">AI system recovery procedures and failover</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.9.1</td>
+                  <td class="p-3 text-gray-600">A.5.19 Information security in supplier relationships</td>
+                  <td class="p-3 text-gray-600">AI-specific vendor risk assessment criteria</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.9.2</td>
+                  <td class="p-3 text-gray-600">A.5.20 Addressing information security within supplier agreements</td>
+                  <td class="p-3 text-gray-600">AI clauses (model access, audit rights, transparency)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.10.1</td>
+                  <td class="p-3 text-gray-600">A.8.19 Installation of software on operational systems</td>
+                  <td class="p-3 text-gray-600">AI-specific procurement requirements</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Medium Overlap -->
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-bold text-yellow-800 mb-3 flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-yellow-500"></span> Medium Overlap — Extend Existing Processes
+          </h3>
+          <p class="text-sm text-gray-600 mb-3">These have partial overlap. The ISO 27001 process exists but needs significant AI-specific extension.</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="text-left p-3 font-semibold">ISO 42001 Control</th>
+                  <th class="text-left p-3 font-semibold">ISO 27001 Equivalent</th>
+                  <th class="text-left p-3 font-semibold">Gap</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr>
+                  <td class="p-3 font-mono">A.5.1-A.5.5</td>
+                  <td class="p-3 text-gray-600">A.8.25-8.26 Secure development lifecycle</td>
+                  <td class="p-3 text-gray-600">AI-specific lifecycle (model training, validation, deployment)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.6.2</td>
+                  <td class="p-3 text-gray-600">A.8.10 Information deletion</td>
+                  <td class="p-3 text-gray-600">AI data quality metrics (accuracy, bias, representativeness)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.6.3</td>
+                  <td class="p-3 text-gray-600">No direct equivalent</td>
+                  <td class="p-3 text-gray-600">Data provenance and lineage is AI-specific</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.8.1</td>
+                  <td class="p-3 text-gray-600">A.8.1 User endpoint devices</td>
+                  <td class="p-3 text-gray-600">AI system inventory and use policy (shadow AI)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.8.2</td>
+                  <td class="p-3 text-gray-600">A.8.2 Privileged access rights</td>
+                  <td class="p-3 text-gray-600">Human oversight model (in-the-loop/on-the-loop/in-command)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.8.3</td>
+                  <td class="p-3 text-gray-600">A.8.16 Monitoring activities</td>
+                  <td class="p-3 text-gray-600">AI-specific monitoring (drift, bias, hallucinations)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Low/No Overlap -->
+        <div class="bg-white rounded-xl border border-gray-200 p-5">
+          <h3 class="font-bold text-red-800 mb-3 flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-500"></span> Low/No Overlap — New for ISO 42001
+          </h3>
+          <p class="text-sm text-gray-600 mb-3">These controls are unique to ISO 42001 and require new implementation.</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="text-left p-3 font-semibold">ISO 42001 Control</th>
+                  <th class="text-left p-3 font-semibold">Description</th>
+                  <th class="text-left p-3 font-semibold">Why It's New</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr>
+                  <td class="p-3 font-mono">A.2.1-A.2.2</td>
+                  <td class="p-3 text-gray-600">AI Policy & Alignment</td>
+                  <td class="p-3 text-gray-600">AI governance policy is distinct from infosec policy</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.3.2</td>
+                  <td class="p-3 text-gray-600">AI Governance Structure</td>
+                  <td class="p-3 text-gray-600">Cross-functional AI governance board is new</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.7.1</td>
+                  <td class="p-3 text-gray-600">Information for Users & Affected Parties</td>
+                  <td class="p-3 text-gray-600">AI transparency requirements go beyond infosec communication</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.7.3</td>
+                  <td class="p-3 text-gray-600">Public Disclosure</td>
+                  <td class="p-3 text-gray-600">AI transparency reports, model cards are new</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.7.4</td>
+                  <td class="p-3 text-gray-600">Communication with Regulators</td>
+                  <td class="p-3 text-gray-600">AI regulatory landscape (EU AI Act) is new</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.8.4</td>
+                  <td class="p-3 text-gray-600">AI System Maintenance & Updates</td>
+                  <td class="p-3 text-gray-600">Model retraining and versioning is AI-specific</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.9.3</td>
+                  <td class="p-3 text-gray-600">Third-party AI Monitoring</td>
+                  <td class="p-3 text-gray-600">Ongoing vendor AI monitoring is new</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-mono">A.10.2</td>
+                  <td class="p-3 text-gray-600">AI System Supplier Evaluation</td>
+                  <td class="p-3 text-gray-600">AI-specific supplier criteria are new</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="grid md:grid-cols-3 gap-6 mb-10">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+        <div class="text-4xl font-bold text-green-600 mb-2">60-70%</div>
+        <div class="text-sm text-green-800">Controls can be reused or extended from ISO 27001</div>
+      </div>
+      <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 text-center">
+        <div class="text-4xl font-bold text-yellow-600 mb-2">15-20%</div>
+        <div class="text-sm text-yellow-800">Controls need significant AI-specific extension</div>
+      </div>
+      <div class="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+        <div class="text-4xl font-bold text-red-600 mb-2">10-20%</div>
+        <div class="text-sm text-red-800">Controls are entirely new for ISO 42001</div>
+      </div>
+    </div>
+
+    <!-- Practical Tips -->
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-6">
+      <h3 class="font-bold text-blue-900 mb-3">Practical Integration Tips</h3>
+      <ul class="space-y-2 text-sm text-blue-800">
+        <li class="flex items-start gap-2"><span>1.</span> <span><strong>Audit together:</strong> Many certification bodies offer combined ISO 27001 + 42001 audits, saving 30-40% on audit costs.</span></li>
+        <li class="flex items-start gap-2"><span>2.</span> <span><strong>Single risk register:</strong> Add AI risks to your existing risk register rather than creating a separate one.</span></li>
+        <li class="flex items-start gap-2"><span>3.</span> <span><strong>Extend, don't duplicate:</strong> Add AI clauses to existing contracts, policies, and procedures rather than creating parallel documents.</span></li>
+        <li class="flex items-start gap-2"><span>4.</span> <span><strong>Leverage internal audit team:</strong> Train existing auditors on AI-specific audit criteria.</span></li>
+        <li class="flex items-start gap-2"><span>5.</span> <span><strong>Management review:</strong> Add AI agenda items to existing management review meetings rather than creating separate ones.</span></li>
+      </ul>
+    </div>
+  </div>
+</Layout>
