@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { QuizQuestion } from '../data/learningModules';
+import Confetti from './Confetti';
 
 interface QuizProps {
   questions: QuizQuestion[];
@@ -60,16 +61,17 @@ export default function Quiz({ questions, lessonTitle, onComplete }: QuizProps) 
     const percentage = Math.round((score / questions.length) * 100);
     return (
       <div className="bg-white rounded-xl border border-gray-200 p-6">
+        <Confetti active={percentage >= 70} duration={4000} />
         <h3 className="text-xl font-bold mb-4">Quiz Complete: {lessonTitle}</h3>
         <div className={`text-center py-8 rounded-lg mb-4 ${
           percentage >= 70 ? 'bg-green-50' : 'bg-amber-50'
         }`}>
-          <div className={`text-5xl font-bold mb-2 ${
+          <div className={`text-5xl font-bold mb-2 animate-pop-in ${
             percentage >= 70 ? 'text-green-600' : 'text-amber-600'
           }`}>
             {score}/{questions.length}
           </div>
-          <div className="text-lg text-gray-600">
+          <div className={`text-lg text-gray-600 ${percentage >= 70 ? 'animate-celebrate' : ''}`}>
             {percentage >= 70 ? '🎉 Great job! You passed.' : '📚 Keep studying and try again.'}
           </div>
           <div className="text-sm text-gray-500 mt-1">{percentage}% correct</div>
@@ -78,8 +80,8 @@ export default function Quiz({ questions, lessonTitle, onComplete }: QuizProps) 
           {questions.map((q, i) => (
             <div key={q.id} className={`p-3 rounded-lg border ${
               answers[i] === q.correctAnswer 
-                ? 'border-green-200 bg-green-50' 
-                : 'border-red-200 bg-red-50'
+                ? 'border-green-200 bg-green-50 animate-pop-in' 
+                : 'border-red-200 bg-red-50 animate-shake'
             }`}>
               <div className="text-sm font-medium">{q.question}</div>
               <div className="text-xs mt-1 text-gray-600">

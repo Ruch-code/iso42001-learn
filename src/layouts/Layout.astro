@@ -1,4 +1,9 @@
 ---
+import Chatbot from '../components/Chatbot.tsx';
+import FloatingRobot from '../components/FloatingRobot.tsx';
+import BackgroundParticles from '../components/BackgroundParticles.tsx';
+import ScrollAnimations from '../components/ScrollAnimations.tsx';
+
 interface Props {
   title: string;
   activePage?: string;
@@ -40,7 +45,7 @@ const navItems = [
             {navItems.map(item => (
               <a
                 href={item.href}
-                class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors nav-underline ${
                   activePage === item.id
                     ? 'bg-blue-50 text-blue-700'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -73,6 +78,10 @@ const navItems = [
           >
             {item.id === 'home' && '🏠'}
             {item.id === 'modules' && '📚'}
+            {item.id === 'roadmap' && '🚀'}
+            {item.id === 'overlap' && '🔗'}
+            {item.id === 'euai' && '🇪🇺'}
+            {item.id === 'nist' && '🇺🇸'}
             {item.id === 'reference' && '📖'}
             {item.id === 'checklist' && '✅'}
             {item.label}
@@ -82,11 +91,16 @@ const navItems = [
     </div>
   </nav>
 
-  <main class="flex-1">
+  <main class="flex-1 relative z-10">
     <slot />
   </main>
 
-  <footer class="bg-white border-t border-gray-200 mt-auto">
+  <BackgroundParticles />
+  <FloatingRobot />
+  <Chatbot client:load />
+  <ScrollAnimations client:load />
+
+  <footer class="bg-white border-t border-gray-200 mt-auto relative z-10">
     <div class="max-w-7xl mx-auto px-4 py-6 text-center text-sm text-gray-500">
       <p>ISO 42001 Learning Platform — Internal Training Resource</p>
       <p class="mt-1">Based on ISO/IEC 42001:2023 — Information technology — Artificial intelligence — Management system</p>
