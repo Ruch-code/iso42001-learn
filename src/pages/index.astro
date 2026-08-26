@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { learningModules } from '../data/learningModules';
+---
+
+<Layout title="Home" activePage="home">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+        New Hire Training Platform
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+        Master <span class="text-blue-600">ISO 42001</span>
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Everything you need to help clients achieve ISO 42001 AI Management System certification. 
+        Learn the standard, understand the controls, and deliver results.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      <a href="/modules" class="group bg-white rounded-2xl border border-gray-200 p-8 hover:border-blue-300 hover:shadow-lg transition-all">
+        <div class="text-4xl mb-4">📚</div>
+        <h2 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">Learning Modules</h2>
+        <p class="text-gray-600 mb-4">Structured lessons covering every aspect of ISO 42001 — from fundamentals to client delivery.</p>
+        <div class="flex items-center gap-4 text-sm">
+          <span class="text-blue-600 font-medium">{learningModules.length} Modules</span>
+          <span class="text-gray-400">•</span>
+          <span class="text-gray-500">{learningModules.reduce((acc, m) => acc + m.lessons.length, 0)} Lessons</span>
+          <span class="text-gray-400">•</span>
+          <span class="text-gray-500">Quizzes & Best Practices</span>
+        </div>
+      </a>
+
+      <a href="/reference" class="group bg-white rounded-2xl border border-gray-200 p-8 hover:border-blue-300 hover:shadow-lg transition-all">
+        <div class="text-4xl mb-4">📖</div>
+        <h2 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">Reference Library</h2>
+        <p class="text-gray-600 mb-4">Quick-reference for ISO 42001 clauses and all Annex A controls with implementation guidance.</p>
+        <div class="flex items-center gap-4 text-sm">
+          <span class="text-blue-600 font-medium">7 Clauses</span>
+          <span class="text-gray-400">•</span>
+          <span class="text-gray-500">24 Annex A Controls</span>
+          <span class="text-gray-400">•</span>
+          <span class="text-gray-500">Evidence Examples</span>
+        </div>
+      </a>
+
+      <a href="/checklist" class="group bg-white rounded-2xl border border-gray-200 p-8 hover:border-blue-300 hover:shadow-lg transition-all">
+        <div class="text-4xl mb-4">✅</div>
+        <h2 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">Client Readiness Checklist</h2>
+        <p class="text-gray-600 mb-4">Track client compliance readiness against every ISO 42001 requirement with priority-based actions.</p>
+        <div class="flex items-center gap-4 text-sm">
+          <span class="text-blue-600 font-medium">22 Requirements</span>
+          <span class="text-gray-400">•</span>
+          <span class="text-gray-500">Priority Levels</span>
+          <span class="text-gray-400">•</span>
+          <span class="text-gray-500">Progress Tracking</span>
+        </div>
+      </a>
+
+      <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
+        <div class="text-4xl mb-4">🎯</div>
+        <h2 class="text-xl font-bold mb-2">Quick Start Guide</h2>
+        <p class="text-gray-300 mb-4">New to ISO 42001? Here's the recommended learning path:</p>
+        <ol class="space-y-2 text-sm text-gray-300">
+          <li class="flex items-start gap-2">
+            <span class="text-blue-400 font-bold">1.</span>
+            <span>Start with <strong class="text-white">Module 1: Fundamentals</strong> — understand what ISO 42001 is</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-400 font-bold">2.</span>
+            <span>Study <strong class="text-white">Module 2: Annex A Controls</strong> — master implementation requirements</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-400 font-bold">3.</span>
+            <span>Learn <strong class="text-white">Module 3: Risk & Impact Assessment</strong> — core client deliverables</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-400 font-bold">4.</span>
+            <span>Practice with <strong class="text-white">Modules 4-6</strong> — client engagement and delivery</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-gray-200 p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Module Overview</h2>
+      <div class="grid gap-4">
+        {learningModules.map((mod) => (
+          <a href={`/modules/${mod.id}`} class="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors group">
+            <span class="text-3xl">{mod.icon}</span>
+            <div class="flex-1">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono bg-gray-100 text-gray-500 px-2 py-0.5 rounded">Module {mod.order}</span>
+                <span class="text-xs text-gray-400">{mod.duration}</span>
+              </div>
+              <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{mod.title}</h3>
+              <p class="text-sm text-gray-500">{mod.description}</p>
+            </div>
+            <span class="text-sm text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
+              Start →
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

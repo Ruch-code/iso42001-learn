@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ClientChecklist from '../components/Checklist.tsx';
+---
+
+<Layout title="Client Readiness Checklist" activePage="checklist">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Client Readiness Checklist</h1>
+      <p class="text-gray-600">Track and manage client compliance readiness against ISO 42001 requirements.</p>
+    </div>
+    <ClientChecklist 
+      client:load 
+      progress={{}} 
+      onUpdateItem={(id, updates) => {
+        // Handled by component internal state + localStorage
+      }}
+    />
+  </div>
+</Layout>

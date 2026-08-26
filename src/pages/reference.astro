@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ReferencePage from '../components/ReferencePage.tsx';
+---
+
+<Layout title="Reference Library" activePage="reference">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Reference Library</h1>
+      <p class="text-gray-600">Quick reference for ISO 42001 clauses, Annex A controls, and implementation guidance.</p>
+    </div>
+    <ReferencePage client:load />
+  </div>
+</Layout>
