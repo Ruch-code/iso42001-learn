@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, ThumbsUp, ThumbsDown, Bot, User, Sparkles } from 'lucide-react';
+import { MessageCircle, X, Send, ThumbsUp, ThumbsDown, Bot, User, Sparkles, Settings, Key } from 'lucide-react';
 import { knowledgeBase, type KnowledgeEntry } from '../data/chatKnowledge';
 
 interface Message {
@@ -9,7 +9,31 @@ interface Message {
   timestamp: Date;
   feedback?: 'helpful' | 'not-helpful';
   suggestions?: string[];
+  source?: 'knowledge-base' | 'ai';
 }
+
+const SYSTEM_PROMPT = `You are an expert ISO 42001 AI Management System assistant. You help new hires learn about ISO 42001, the international standard for AI management systems.
+
+Key facts about ISO 42001:
+- Published December 2023 as ISO/IEC 42001:2023
+- First international certifiable standard for AI management systems
+- Follows Annex SL structure (same as ISO 27001, ISO 9001)
+- Covers: AI policy, governance, risk assessment, AI system lifecycle, data governance, third-party management, human oversight, monitoring
+- Has 24 Annex A controls across 8 categories
+- 60-70% overlap with ISO 27001 controls
+- Helps demonstrate conformity with EU AI Act
+- Complements NIST AI 600-1 (AI Risk Management Playbook)
+
+Clauses 4-10 cover: Context, Leadership, Planning, Support, Operation, Performance Evaluation, Improvement.
+
+Annex A controls: A.2 (AI Policy), A.3 (Internal Organization), A.4 (Resources), A.5 (AI System Lifecycle), A.6 (Data for AI Systems), A.7 (Information for Interested Parties), A.8 (Use of AI Systems), A.9 (Third-party Relationships), A.10 (Acquisition of AI Systems).
+
+Rules:
+- Be concise and helpful
+- Use bullet points and structured formatting
+- If unsure, say so honestly
+- Focus on practical implementation advice
+- Keep answers under 300 words unless detail is needed`;
 
 function findBestAnswer(query: string): KnowledgeEntry | null {
   const lower = query.toLowerCase().trim();
@@ -49,22 +73,39 @@ function getSmartSuggestions(): string[] {
   return suggestions.sort(() => Math.random() - 0.5).slice(0, 3);
 }
 
-function getFallbackAnswer(query: string): string {
-  const lower = query.toLowerCase();
-  
-  if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) {
-    return "Hello! 👋 I'm your ISO 42001 assistant. I can help you understand the standard, its controls, implementation process, and how it relates to EU AI Act and NIST. What would you like to know?";
-  }
-  
-  if (lower.includes('thank') || lower.includes('thanks')) {
-    return "You're welcome! Happy to help with any ISO 42001 questions. Feel free to ask anything else! 😊";
-  }
-  
-  if (lower.includes('help') || lower.includes('what can you')) {
-    return "I can help with:\n\n• ISO 42001 fundamentals and structure\n• Annex A controls explained\n• Risk and impact assessment guidance\n• Implementation roadmap\n• EU AI Act and NIST 600-1 mapping\n• ISO 27001 integration\n• Documentation requirements\n• Audit preparation\n\nJust ask a question!";
+async function callGeminiAPI(query: string, apiKey: string, chatHistory: Message[]): Promise<string> {
+  const historyContents = chatHistory.slice(-10).map(m => ({
+    role: m.sender === 'user' ? 'user' : 'model',
+    parts: [{ text: m.text }]
+  }));
+
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        contents: [
+          ...historyContents,
+          { role: 'user', parts: [{ text: query }] }
+        ],
+        generationConfig: {
+          temperature: 0.7,
+          maxOutputTokens: 1024,
+          topP: 0.8
+        }
+      })
+    }
+  );
+
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err?.error?.message || `API error ${response.status}`);
   }
 
-  return "I'm not sure about that specific question. Here are some topics I can help with:\n\n• ISO 42001 basics and structure\n• Annex A controls\n• Risk assessment\n• EU AI Act\n• NIST AI 600-1\n• Implementation tips\n\nTry rephrasing your question or pick one of the suggestions below!";
+  const data = await response.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not generate a response.';
 }
 
 export default function Chatbot() {
@@ -72,11 +113,20 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [suggestions, setSuggestions] = useState(getSmartSuggestions());
+  const [showSettings, setShowSettings] = useState(false);
+  const [apiKey, setApiKey] = useState('');
+  const [apiKeyInput, setApiKeyInput] = useState('');
+  const [aiEnabled, setAiEnabled] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const savedKey = localStorage.getItem('iso42001-gemini-key');
+    if (savedKey) {
+      setApiKey(savedKey);
+      setApiKeyInput(savedKey);
+      setAiEnabled(true);
+    }
     const saved = localStorage.getItem('iso42001-chat');
     if (saved) {
       try {
@@ -86,7 +136,7 @@ export default function Chatbot() {
     } else {
       setMessages([{
         id: 'welcome',
-        text: "Hi! I'm your ISO 42001 AI assistant 🤖\n\nI can answer questions about:\n• ISO 42001 standard\n• Annex A controls\n• Risk & impact assessment\n• EU AI Act & NIST\n• Implementation tips\n\nWhat would you like to know?",
+        text: "Hi! I'm your ISO 42001 AI assistant 🤖\n\nI can answer questions about:\n• ISO 42001 standard\n• Annex A controls\n• Risk & impact assessment\n• EU AI Act & NIST\n• Implementation tips\n" + (aiEnabled ? "\n💡 I'm powered by Google AI for any question!" : "\n🔧 Add a Gemini API key in settings for unlimited answers!"),
         sender: 'bot',
         timestamp: new Date(),
         suggestions: getSmartSuggestions()
@@ -103,10 +153,23 @@ export default function Chatbot() {
   }, [messages]);
 
   useEffect(() => {
-    if (isOpen) inputRef.current?.focus();
-  }, [isOpen]);
+    if (isOpen && !showSettings) inputRef.current?.focus();
+  }, [isOpen, showSettings]);
 
-  const handleSend = (text?: string) => {
+  const handleSaveApiKey = () => {
+    if (apiKeyInput.trim()) {
+      setApiKey(apiKeyInput.trim());
+      setAiEnabled(true);
+      localStorage.setItem('iso42001-gemini-key', apiKeyInput.trim());
+    } else {
+      setApiKey('');
+      setAiEnabled(false);
+      localStorage.removeItem('iso42001-gemini-key');
+    }
+    setShowSettings(false);
+  };
+
+  const handleSend = async (text?: string) => {
     const query = text || input.trim();
     if (!query) return;
 
@@ -121,37 +184,72 @@ export default function Chatbot() {
     setInput('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      const match = findBestAnswer(query);
-      let answer: string;
-      let suggestionsList: string[] = [];
+    const match = findBestAnswer(query);
 
-      if (match) {
-        answer = match.answer;
-        suggestionsList = getSmartSuggestions();
-      } else {
-        answer = getFallbackAnswer(query);
-        suggestionsList = getSmartSuggestions();
-      }
+    if (match) {
+      setTimeout(() => {
+        const botMsg: Message = {
+          id: (Date.now() + 1).toString(),
+          text: match.answer,
+          sender: 'bot',
+          timestamp: new Date(),
+          suggestions: getSmartSuggestions(),
+          source: 'knowledge-base'
+        };
+        setIsTyping(false);
+        setMessages(prev => [...prev, botMsg]);
+      }, 500 + Math.random() * 400);
+      return;
+    }
 
+    if (!aiEnabled) {
+      setTimeout(() => {
+        const botMsg: Message = {
+          id: (Date.now() + 1).toString(),
+          text: "I don't have a pre-loaded answer for that. For unlimited AI-powered answers, add a free Google Gemini API key in Settings! ⚙️\n\nGet your free key at: aistudio.google.com/apikey",
+          sender: 'bot',
+          timestamp: new Date(),
+          suggestions: getSmartSuggestions()
+        };
+        setIsTyping(false);
+        setMessages(prev => [...prev, botMsg]);
+      }, 600);
+      return;
+    }
+
+    try {
+      const aiAnswer = await callGeminiAPI(query, apiKey, messages);
       const botMsg: Message = {
         id: (Date.now() + 1).toString(),
-        text: answer,
+        text: aiAnswer,
         sender: 'bot',
         timestamp: new Date(),
-        suggestions: suggestionsList
+        suggestions: getSmartSuggestions(),
+        source: 'ai'
       };
-
       setIsTyping(false);
       setMessages(prev => [...prev, botMsg]);
-    }, 800 + Math.random() * 700);
+    } catch (err: any) {
+      const errorMsg = err?.message?.includes('API key')
+        ? "Invalid API key. Please check your Gemini API key in Settings."
+        : "Sorry, I couldn't reach the AI. Please try again or check your API key in Settings.";
+      
+      const botMsg: Message = {
+        id: (Date.now() + 1).toString(),
+        text: errorMsg,
+        sender: 'bot',
+        timestamp: new Date(),
+        suggestions: getSmartSuggestions()
+      };
+      setIsTyping(false);
+      setMessages(prev => [...prev, botMsg]);
+    }
   };
 
   const handleFeedback = (msgId: string, type: 'helpful' | 'not-helpful') => {
-    setMessages(prev => prev.map(m => 
+    setMessages(prev => prev.map(m =>
       m.id === msgId ? { ...m, feedback: type } : m
     ));
-    
     const feedback = JSON.parse(localStorage.getItem('iso42001-chat-feedback') || '{}');
     feedback[msgId] = type;
     localStorage.setItem('iso42001-chat-feedback', JSON.stringify(feedback));
@@ -181,18 +279,56 @@ export default function Chatbot() {
               <div>
                 <h3 className="font-semibold text-sm">ISO 42001 Assistant</h3>
                 <div className="flex items-center gap-1 text-xs text-blue-100">
-                  <Sparkles className="w-3 h-3" />
-                  <span>AI-Powered Help</span>
+                  {aiEnabled ? (
+                    <><Sparkles className="w-3 h-3" /><span>Powered by Google AI</span></>
+                  ) : (
+                    <><Key className="w-3 h-3" /><span>Knowledge base only</span></>
+                  )}
                 </div>
               </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
-            >
-              <X className="w-4 h-4" />
-            </button>
+            <div className="flex items-center gap-2">
+              <button onClick={() => setShowSettings(!showSettings)}
+                className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
+                title="Settings">
+                <Settings className="w-4 h-4" />
+              </button>
+              <button onClick={() => setIsOpen(false)}
+                className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
           </div>
+
+          {/* Settings Panel */}
+          {showSettings && (
+            <div className="bg-blue-50 border-b border-blue-100 p-4 animate-slide-up">
+              <h4 className="font-semibold text-blue-900 text-sm mb-2">🔧 API Settings</h4>
+              <p className="text-xs text-blue-700 mb-2">
+                Add a free Google Gemini API key for AI-powered answers to any question.
+              </p>
+              <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener"
+                className="text-xs text-blue-600 underline mb-2 inline-block">
+                Get free key at aistudio.google.com/apikey →
+              </a>
+              <div className="flex gap-2">
+                <input
+                  type="password"
+                  value={apiKeyInput}
+                  onChange={(e) => setApiKeyInput(e.target.value)}
+                  placeholder="Paste your Gemini API key..."
+                  className="flex-1 px-3 py-2 border border-blue-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 bg-white"
+                />
+                <button onClick={handleSaveApiKey}
+                  className="px-3 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors whitespace-nowrap">
+                  {apiKeyInput ? 'Save' : 'Clear'}
+                </button>
+              </div>
+              {aiEnabled && (
+                <p className="text-xs text-green-600 mt-2">✅ AI enabled — ask me anything!</p>
+              )}
+            </div>
+          )}
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
@@ -213,6 +349,16 @@ export default function Chatbot() {
                       }`}>
                         {msg.text}
                       </div>
+
+                      {msg.source && (
+                        <div className="flex items-center gap-1 mt-1 ml-1">
+                          {msg.source === 'knowledge-base' ? (
+                            <span className="text-xs text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full">📚 From knowledge base</span>
+                          ) : (
+                            <span className="text-xs text-purple-500 bg-purple-50 px-2 py-0.5 rounded-full">✨ AI-generated</span>
+                          )}
+                        </div>
+                      )}
 
                       {msg.sender === 'bot' && !msg.feedback && msg.id !== 'welcome' && (
                         <div className="flex items-center gap-2 mt-1.5 ml-1">
@@ -279,7 +425,7 @@ export default function Chatbot() {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about ISO 42001..."
+                placeholder={aiEnabled ? "Ask me anything about ISO 42001..." : "Ask about ISO 42001..."}
                 className="flex-1 px-4 py-2.5 bg-gray-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors"
               />
               <button type="submit" disabled={!input.trim()}

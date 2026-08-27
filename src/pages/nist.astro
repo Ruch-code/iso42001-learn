@@ -2,254 +2,422 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="NIST AI 600-1 & ISO 42001" activePage="nist">
+<Layout title="NIST AI Frameworks" activePage="nist">
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="mb-8">
       <div class="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
-        🇺🇸 US Framework
+        🇺🇸 NIST AI Frameworks
       </div>
-      <h1 class="text-3xl font-bold text-gray-900 mb-3">NIST AI 600-1 & ISO 42001</h1>
-      <p class="text-gray-600 text-lg">NIST AI 600-1 (AI Risk Management Playbook) provides practical guidance for managing AI risks — here's what it covers and how it maps to ISO 42001.</p>
+      <h1 class="text-3xl font-bold text-gray-900 mb-3">NIST AI Frameworks & ISO 42001</h1>
+      <p class="text-gray-600 text-lg">Three NIST documents work together to provide comprehensive AI risk management guidance. Here's how they relate to each other and to ISO 42001.</p>
     </div>
 
-    <!-- What is NIST AI 600-1 -->
+    <!-- Framework Overview -->
     <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">What is NIST AI 600-1?</h2>
-      <p class="text-gray-600 mb-4"><strong>NIST AI 600-1: AI Risk Management Playbook</strong> is a companion document to the <strong>NIST AI Risk Management Framework (AI RMF 1.0)</strong>. Published by the U.S. National Institute of Standards and Technology, it provides practical, actionable guidance for organizations to manage AI risks.</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">How the Three Frameworks Connect</h2>
+      <div class="relative">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 text-center relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">PARENT</div>
+            <div class="text-4xl mb-3 mt-2">🗺️</div>
+            <h3 class="font-bold text-blue-800 text-lg mb-2">NIST AI RMF 1.0</h3>
+            <p class="text-sm text-blue-700 mb-3">The foundation — defines <strong>what</strong> to do</p>
+            <div class="bg-blue-100 rounded-lg p-3 text-xs text-blue-800 text-left">
+              <strong>Published:</strong> January 2023<br/>
+              <strong>Type:</strong> Voluntary framework<br/>
+              <strong>Purpose:</strong> Define core functions for managing AI risks
+            </div>
+          </div>
+          
+          <div class="bg-purple-50 border-2 border-purple-200 rounded-2xl p-6 text-center relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">PLAYBOOK</div>
+            <div class="text-4xl mb-3 mt-2">📖</div>
+            <h3 class="font-bold text-purple-800 text-lg mb-2">NIST AI 600-1</h3>
+            <p class="text-sm text-purple-700 mb-3">The playbook — explains <strong>how</strong> to do it</p>
+            <div class="bg-purple-100 rounded-lg p-3 text-xs text-purple-800 text-left">
+              <strong>Published:</strong> January 2024<br/>
+              <strong>Type:</strong> Implementation guidance<br/>
+              <strong>Purpose:</strong> Practical advice for each RMF function
+            </div>
+          </div>
+
+          <div class="bg-green-50 border-2 border-green-200 rounded-2xl p-6 text-center relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">SECURITY</div>
+            <div class="text-4xl mb-3 mt-2">🔒</div>
+            <h3 class="font-bold text-green-800 text-lg mb-2">NIST SP 800-218A</h3>
+            <p class="text-sm text-green-700 mb-3">Secure dev — covers <strong>how to build securely</strong></p>
+            <div class="bg-green-100 rounded-lg p-3 text-xs text-green-800 text-left">
+              <strong>Published:</strong> February 2023<br/>
+              <strong>Type:</strong> Secure development practices<br/>
+              <strong>Purpose:</strong> Secure software development for AI systems
+            </div>
+          </div>
+        </div>
+
+        <!-- Connection arrows -->
+        <div class="hidden md:flex justify-center items-center gap-4 my-4">
+          <div class="flex items-center gap-2 text-sm text-gray-500">
+            <span>RMF 1.0 defines</span>
+            <span class="text-blue-500 text-lg">→</span>
+            <span>600-1 implements</span>
+            <span class="text-purple-500 text-lg">→</span>
+            <span>800-218A secures</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NIST AI RMF 1.0 Deep Dive -->
+    <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">🗺️ NIST AI RMF 1.0 — The Foundation</h2>
+      <p class="text-gray-600 mb-4">The AI Risk Management Framework provides a structured approach for managing AI risks throughout the lifecycle. It's organized around four core functions with specific categories under each.</p>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <!-- GOVERN -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-2xl">🔍</span>
+            <h3 class="font-bold text-blue-800 text-lg">GOVERN</h3>
+          </div>
+          <p class="text-sm text-blue-700 mb-3">Establish AI risk management culture, policies, processes, and accountability.</p>
+          <ul class="space-y-1 text-xs text-blue-800">
+            <li><strong>GOVERN 1:</strong> Legal & regulatory requirements mapping</li>
+            <li><strong>GOVERN 2:</strong> Roles, responsibilities, and accountability</li>
+            <li><strong>GOVERN 3:</strong> Decision-making relating to AI risk</li>
+            <li><strong>GOVERN 4:</strong> Organizational practices for AI risk management</li>
+            <li><strong>GOVERN 5:</strong> Policies, processes, and procedures</li>
+            <li><strong>GOVERN 6:</strong> Risk culture and awareness</li>
+          </ul>
+          <div class="mt-3 p-2 bg-blue-100 rounded text-xs text-blue-700">
+            <strong>ISO 42001 map:</strong> Clause 5 (Leadership), A.2.1, A.3.1, A.3.2
+          </div>
+        </div>
+
+        <!-- MAP -->
+        <div class="bg-purple-50 border border-purple-200 rounded-xl p-5">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-2xl">🗺️</span>
+            <h3 class="font-bold text-purple-800 text-lg">MAP</h3>
+          </div>
+          <p class="text-sm text-purple-700 mb-3">Context, identify, and scope AI risks and impacts across the system lifecycle.</p>
+          <ul class="space-y-1 text-xs text-purple-800">
+            <li><strong>MAP 1:</strong> Intended purpose, context, and potential impacts</li>
+            <li><strong>MAP 2:</strong> Benefits and costs identification</li>
+            <li><strong>MAP 3:</strong> AI system risk profile development</li>
+            <li><strong>MAP 4:</strong> Impacts to individuals, groups, communities</li>
+            <li><strong>MAP 5:</strong> Benefits, risks, and tradeoffs analysis</li>
+            <li><strong>MAP 6:</strong> Risk prioritization and response</li>
+          </ul>
+          <div class="mt-3 p-2 bg-purple-100 rounded text-xs text-purple-700">
+            <strong>ISO 42001 map:</strong> Clause 4 (Context), Clause 6.1 (Risk Assessment), Clause 8.2 (AIIA)
+          </div>
+        </div>
+
+        <!-- MEASURE -->
+        <div class="bg-green-50 border border-green-200 rounded-xl p-5">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-2xl">⚙️</span>
+            <h3 class="font-bold text-green-800 text-lg">MEASURE</h3>
+          </div>
+          <p class="text-sm text-green-700 mb-3">Analyze, assess, and monitor AI risks using quantitative and qualitative methods.</p>
+          <ul class="space-y-1 text-xs text-green-800">
+            <li><strong>MEASURE 1:</strong> Approaches for risk measurement</li>
+            <li><strong>MEASURE 2:</strong> AI system capabilities and limitations</li>
+            <li><strong>MEASURE 3:</strong> AI system performance and monitoring</li>
+            <li><strong>MEASURE 4:</strong> Risk monitoring and incident response</li>
+            <li><strong>MEASURE 5:</strong> Post-deployment monitoring</li>
+            <li><strong>MEASURE 6:</strong> Risk communication and reporting</li>
+          </ul>
+          <div class="mt-3 p-2 bg-green-100 rounded text-xs text-green-700">
+            <strong>ISO 42001 map:</strong> Clause 9.1 (Monitoring), A.8.3, A.6.2
+          </div>
+        </div>
+
+        <!-- MANAGE -->
+        <div class="bg-orange-50 border border-orange-200 rounded-xl p-5">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-2xl">🛡️</span>
+            <h3 class="font-bold text-orange-800 text-lg">MANAGE</h3>
+          </div>
+          <p class="text-sm text-orange-700 mb-3">Respond to, treat, and monitor AI risks based on assessment and prioritization.</p>
+          <ul class="space-y-1 text-xs text-orange-800">
+            <li><strong>MANAGE 1:</strong> Risk prioritization and response planning</li>
+            <li><strong>MANAGE 2:</strong> Implementation of risk response</li>
+            <li><strong>MANAGE 3:</strong> Monitoring and review of risk response</li>
+            <li><strong>MANAGE 4:</strong> Recovery and updates based on feedback</li>
+            <li><strong>MANAGE 5:</strong> Incident response and lessons learned</li>
+          </ul>
+          <div class="mt-3 p-2 bg-orange-100 rounded text-xs text-orange-700">
+            <strong>ISO 42001 map:</strong> Clause 8.3 (Risk Treatment), Clause 10.1 (Corrective Action), A.7.2
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NIST AI 600-1 Deep Dive -->
+    <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">📖 NIST AI 600-1 — The Playbook</h2>
+      <p class="text-gray-600 mb-4">AI 600-1 provides the practical "how-to" for each RMF function. It includes actionable recommendations, best practices, and detailed guidance.</p>
+
+      <div class="space-y-4">
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5">
+          <h3 class="font-bold text-blue-800 mb-2">GOVERN Playbook Recommendations</h3>
+          <div class="grid md:grid-cols-2 gap-3 text-sm text-blue-800">
+            <div class="flex items-start gap-2"><span class="text-blue-500">•</span> <span>Map legal & regulatory requirements specific to AI</span></div>
+            <div class="flex items-start gap-2"><span class="text-blue-500">•</span> <span>Define clear roles: AI owner, risk officer, ethics lead</span></div>
+            <div class="flex items-start gap-2"><span class="text-blue-500">•</span> <span>Integrate AI risk into enterprise risk management</span></div>
+            <div class="flex items-start gap-2"><span class="text-blue-500">•</span> <span>Establish AI ethics principles and governance board</span></div>
+            <div class="flex items-start gap-2"><span class="text-blue-500">•</span> <span>Create AI use policies with enforcement mechanisms</span></div>
+            <div class="flex items-start gap-2"><span class="text-blue-500">•</span> <span>Build AI risk awareness across all organizational levels</span></div>
+          </div>
+        </div>
+
+        <div class="bg-purple-50 border border-purple-200 rounded-xl p-5">
+          <h3 class="font-bold text-purple-800 mb-2">MAP Playbook Recommendations</h3>
+          <div class="grid md:grid-cols-2 gap-3 text-sm text-purple-800">
+            <div class="flex items-start gap-2"><span class="text-purple-500">•</span> <span>Document intended purpose and use context for each AI system</span></div>
+            <div class="flex items-start gap-2"><span class="text-purple-500">•</span> <span>Identify all stakeholders including affected communities</span></div>
+            <div class="flex items-start gap-2"><span class="text-purple-500">•</span> <span>Map benefits against potential harms and risks</span></div>
+            <div class="flex items-start gap-2"><span class="text-purple-500">•</span> <span>Assess impacts on individuals, groups, and communities</span></div>
+            <div class="flex items-start gap-2"><span class="text-purple-500">•</span> <span>Develop risk profiles for each AI system</span></div>
+            <div class="flex items-start gap-2"><span class="text-purple-500">•</span> <span>Prioritize risks based on severity and likelihood</span></div>
+          </div>
+        </div>
+
+        <div class="bg-green-50 border border-green-200 rounded-xl p-5">
+          <h3 class="font-bold text-green-800 mb-2">MEASURE Playbook Recommendations</h3>
+          <div class="grid md:grid-cols-2 gap-3 text-sm text-green-800">
+            <div class="flex items-start gap-2"><span class="text-green-500">•</span> <span>Use technical metrics: accuracy, fairness, robustness, privacy</span></div>
+            <div class="flex items-start gap-2"><span class="text-green-500">•</span> <span>Document AI system capabilities and limitations transparently</span></div>
+            <div class="flex items-start gap-2"><span class="text-green-500">•</span> <span>Implement continuous monitoring for drift and performance</span></div>
+            <div class="flex items-start gap-2"><span class="text-green-500">•</span> <span>Establish incident response and reporting mechanisms</span></div>
+            <div class="flex items-start gap-2"><span class="text-green-500">•</span> <span>Conduct regular bias audits and fairness assessments</span></div>
+            <div class="flex items-start gap-2"><span class="text-green-500">•</span> <span>Track and communicate risk metrics to stakeholders</span></div>
+          </div>
+        </div>
+
+        <div class="bg-orange-50 border border-orange-200 rounded-xl p-5">
+          <h3 class="font-bold text-orange-800 mb-2">MANAGE Playbook Recommendations</h3>
+          <div class="grid md:grid-cols-2 gap-3 text-sm text-orange-800">
+            <div class="flex items-start gap-2"><span class="text-orange-500">•</span> <span>Prioritize risks and allocate resources for treatment</span></div>
+            <div class="flex items-start gap-2"><span class="text-orange-500">•</span> <span>Implement safeguards proportionate to risk level</span></div>
+            <div class="flex items-start gap-2"><span class="text-orange-500">•</span> <span>Monitor effectiveness of risk responses continuously</span></div>
+            <div class="flex items-start gap-2"><span class="text-orange-500">•</span> <span>Update risk treatment based on monitoring feedback</span></div>
+            <div class="flex items-start gap-2"><span class="text-orange-500">•</span> <span>Conduct post-incident reviews and capture lessons learned</span></div>
+            <div class="flex items-start gap-2"><span class="text-orange-500">•</span> <span>Continuously improve AI risk management practices</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NIST SP 800-218A -->
+    <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">🔒 NIST SP 800-218A — Secure AI Development</h2>
+      <p class="text-gray-600 mb-4">The Secure Software Development Framework for AI (SSDF-AI) provides practices for building AI systems securely throughout the development lifecycle.</p>
+
+      <div class="bg-green-50 rounded-lg p-4 mb-6">
+        <h3 class="font-semibold text-green-900 text-sm mb-2">What is NIST SP 800-218A?</h3>
+        <p class="text-sm text-green-800">An extension of NIST SP 800-218 (Secure Software Development Framework) specifically tailored for AI/ML systems. It addresses unique security challenges in AI development like data poisoning, model theft, and adversarial attacks.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h3 class="font-bold text-gray-800 mb-3">1. Prepare the Organization</h3>
+          <ul class="space-y-1 text-sm text-gray-600">
+            <li>• Define AI security requirements and policies</li>
+            <li>• Establish secure AI development lifecycle</li>
+            <li>• Train developers on AI-specific security risks</li>
+            <li>• Create AI security testing environments</li>
+            <li>• Define threat models for AI systems</li>
+          </ul>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h3 class="font-bold text-gray-800 mb-3">2. Protect the AI Software Pipeline</h3>
+          <ul class="space-y-1 text-sm text-gray-600">
+            <li>• Protect training data from tampering</li>
+            <li>• Secure model artifacts and weights</li>
+            <li>• Protect development infrastructure</li>
+            <li>• Implement access controls for AI resources</li>
+            <li>• Secure CI/CD pipelines for AI</li>
+          </ul>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h3 class="font-bold text-gray-800 mb-3">3. Produce Well-Secured AI Software</h3>
+          <ul class="space-y-1 text-sm text-gray-600">
+            <li>• Use threat modeling for AI design</li>
+            <li>• Review AI architecture for security flaws</li>
+            <li>• Test for adversarial robustness</li>
+            <li>• Conduct code and model reviews</li>
+            <li>• Validate training data integrity</li>
+          </ul>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h3 class="font-bold text-gray-800 mb-3">4. Respond to AI Security Incidents</h3>
+          <ul class="space-y-1 text-sm text-gray-600">
+            <li>• Identify and respond to AI-specific incidents</li>
+            <li>• Recover from data poisoning attacks</li>
+            <li>• Respond to adversarial manipulation</li>
+            <li>• Communicate incident details effectively</li>
+            <li>• Learn and improve from incidents</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4">
+        <h4 class="font-semibold text-green-900 text-sm mb-2">ISO 42001 ↔ SP 800-218A Mapping</h4>
+        <div class="grid md:grid-cols-2 gap-3 text-sm text-green-800">
+          <div><strong>A.5.1-A.5.5</strong> (Lifecycle) ↔ Secure development practices</div>
+          <div><strong>A.6.1-A.6.3</strong> (Data) ↔ Data protection and integrity</div>
+          <div><strong>A.8.3</strong> (Monitoring) ↔ Security monitoring and testing</div>
+          <div><strong>A.5.4</strong> (Verification) ↔ Adversarial robustness testing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">NIST Frameworks ↔ ISO 42001 Complete Mapping</h2>
       
-      <div class="bg-indigo-50 rounded-lg p-4 mb-6">
-        <h3 class="font-semibold text-indigo-900 text-sm mb-2">Key Facts</h3>
-        <div class="grid md:grid-cols-2 gap-2 text-sm text-indigo-800">
-          <div><strong>Published:</strong> January 2024</div>
-          <div><strong>Full Name:</strong> NIST AI 600-1: AI Risk Management Playbook</div>
-          <div><strong>Parent Framework:</strong> NIST AI RMF 1.0 (January 2023)</div>
-          <div><strong>Type:</strong> Voluntary guidance (not mandatory in US, but referenced globally)</div>
-          <div><strong>Scope:</strong> Practical implementation guidance for AI RMF</div>
-          <div><strong>Audience:</strong> Organizations developing, deploying, or using AI systems</div>
-        </div>
-      </div>
-
-      <p class="text-gray-600 mb-4">While the AI RMF provides the "what," the Playbook provides the "how." It's organized around four core functions:</p>
-
-      <div class="grid md:grid-cols-4 gap-4">
-        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
-          <div class="text-3xl mb-2">🔍</div>
-          <h3 class="font-bold text-blue-800">GOVERN</h3>
-          <p class="text-xs text-blue-600 mt-1">Establish AI risk management culture, policies, and processes</p>
-        </div>
-        <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
-          <div class="text-3xl mb-2">🗺️</div>
-          <h3 class="font-bold text-purple-800">MAP</h3>
-          <p class="text-xs text-purple-600 mt-1">Context, identify, and scope AI risks and impacts</p>
-        </div>
-        <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-center">
-          <div class="text-3xl mb-2">⚙️</div>
-          <h3 class="font-bold text-green-800">MEASURE</h3>
-          <p class="text-xs text-green-600 mt-1">Analyze, assess, and monitor AI risks</p>
-        </div>
-        <div class="bg-orange-50 border border-orange-200 rounded-xl p-4 text-center">
-          <div class="text-3xl mb-2">🛡️</div>
-          <h3 class="font-bold text-orange-800">MANAGE</h3>
-          <p class="text-xs text-orange-600 mt-1">Respond to, treat, and monitor AI risks</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- NIST AI RMF Core Categories -->
-    <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">NIST AI 600-1 Key Guidance Areas</h2>
-      <p class="text-gray-600 mb-4">The Playbook provides detailed guidance across these areas:</p>
-
-      <div class="space-y-3">
-        <div class="p-4 bg-gray-50 rounded-lg">
-          <h4 class="font-semibold text-gray-900 text-sm">1. AI Risk Management Governance</h4>
-          <p class="text-sm text-gray-600 mt-1">Establish roles, responsibilities, accountability, and decision-making processes for AI risk. Define risk tolerance and integrate with enterprise risk management.</p>
-        </div>
-        <div class="p-4 bg-gray-50 rounded-lg">
-          <h4 class="font-semibold text-gray-900 text-sm">2. AI System Context & Mapping</h4>
-          <p class="text-sm text-gray-600 mt-1">Document AI system purpose, intended use, stakeholders, and potential impacts. Map benefits, costs, and risks across the AI lifecycle.</p>
-        </div>
-        <div class="p-4 bg-gray-50 rounded-lg">
-          <h4 class="font-semibold text-gray-900 text-sm">3. AI Risk Measurement & Assessment</h4>
-          <p class="text-sm text-gray-600 mt-1">Identify, quantify, and qualify AI risks. Use technical metrics (accuracy, fairness, robustness) and organizational metrics (financial, reputational).</p>
-        </div>
-        <div class="p-4 bg-gray-50 rounded-lg">
-          <h4 class="font-semibold text-gray-900 text-sm">4. AI Risk Treatment & Management</h4>
-          <p class="text-sm text-gray-600 mt-1">Prioritize and address AI risks. Implement safeguards, monitor effectiveness, and respond to AI incidents.</p>
-        </div>
-        <div class="p-4 bg-gray-50 rounded-lg">
-          <h4 class="font-semibold text-gray-900 text-sm">5. AI System Accountability & Transparency</h4>
-          <p class="text-sm text-gray-600 mt-1">Document AI decisions, maintain audit trails, ensure explainability, and communicate AI capabilities and limitations.</p>
-        </div>
-        <div class="p-4 bg-gray-50 rounded-lg">
-          <h4 class="font-semibold text-gray-900 text-sm">6. Third-Party AI Risk Management</h4>
-          <p class="text-sm text-gray-600 mt-1">Assess and manage risks from externally developed AI systems, including vendor evaluation, contractual protections, and ongoing monitoring.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ISO 42001 Overlap -->
-    <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">NIST AI 600-1 ↔ ISO 42001 Overlap</h2>
-      <p class="text-gray-600 mb-4">Both frameworks address AI risk management. ISO 42001 provides the management system structure; NIST 600-1 provides detailed practical guidance. Here's how they map:</p>
-
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead class="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th class="text-left p-4 font-semibold text-gray-900">NIST AI 600-1 Area</th>
+              <th class="text-left p-4 font-semibold text-gray-900">NIST Area</th>
               <th class="text-left p-4 font-semibold text-gray-900">ISO 42001 Equivalent</th>
               <th class="text-left p-4 font-semibold text-gray-900">Overlap</th>
-              <th class="text-left p-4 font-semibold text-gray-900">Notes</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-100">
+            <tr><td class="p-4 font-medium" colspan="3" style="background: #eff6ff; color: #1d4ed8; font-weight: 700;">GOVERN</td></tr>
             <tr>
-              <td class="p-4 font-medium">GOVERN: Risk management culture</td>
-              <td class="p-4 text-gray-600">Clause 5 (Leadership) + A.2.1</td>
+              <td class="p-4">Risk management culture & policies</td>
+              <td class="p-4 text-gray-600">Clause 5 + A.2.1, A.2.2</td>
               <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
-              <td class="p-4 text-gray-600">Both emphasize top management commitment and AI policy</td>
             </tr>
             <tr>
-              <td class="p-4 font-medium">GOVERN: Roles & accountability</td>
+              <td class="p-4">Roles, responsibilities, accountability</td>
               <td class="p-4 text-gray-600">A.3.1, A.3.2</td>
               <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
-              <td class="p-4 text-gray-600">Direct match — governance structure and accountability</td>
             </tr>
             <tr>
-              <td class="p-4 font-medium">MAP: System context & purpose</td>
-              <td class="p-4 text-gray-600">Clause 4 (Context) + A.5.2</td>
+              <td class="p-4">Decision-making & oversight</td>
+              <td class="p-4 text-gray-600">A.3.4 (Management Review)</td>
               <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
-              <td class="p-4 text-gray-600">Context of organization + system requirements</td>
+            </tr>
+
+            <tr><td class="p-4 font-medium" colspan="3" style="background: #f5f3ff; color: #6d28d9; font-weight: 700;">MAP</td></tr>
+            <tr>
+              <td class="p-4">Intended purpose & context</td>
+              <td class="p-4 text-gray-600">Clause 4 + A.5.2</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
             </tr>
             <tr>
-              <td class="p-4 font-medium">MAP: Impact identification</td>
+              <td class="p-4">Impact identification & assessment</td>
               <td class="p-4 text-gray-600">Clause 8.2 (AIIA)</td>
               <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
-              <td class="p-4 text-gray-600">AI system impact assessment maps to NIST impact mapping</td>
             </tr>
             <tr>
-              <td class="p-4 font-medium">MEASURE: Risk assessment</td>
+              <td class="p-4">Benefits vs risks analysis</td>
+              <td class="p-4 text-gray-600">Clause 6.1 + AIIA</td>
+              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
+            </tr>
+
+            <tr><td class="p-4 font-medium" colspan="3" style="background: #ecfdf5; color: #047857; font-weight: 700;">MEASURE</td></tr>
+            <tr>
+              <td class="p-4">Risk measurement approaches</td>
               <td class="p-4 text-gray-600">Clause 6.1 + Clause 8.3</td>
               <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
-              <td class="p-4 text-gray-600">Risk assessment + treatment process</td>
             </tr>
             <tr>
-              <td class="p-4 font-medium">MEASURE: Performance monitoring</td>
+              <td class="p-4">Performance monitoring</td>
               <td class="p-4 text-gray-600">A.8.3 + Clause 9.1</td>
               <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
-              <td class="p-4 text-gray-600">AI monitoring + measurement and evaluation</td>
             </tr>
             <tr>
-              <td class="p-4 font-medium">MEASURE: Fairness & bias</td>
-              <td class="p-4 text-gray-600">A.6.2 (Data Quality) + AIIA</td>
+              <td class="p-4">Fairness & bias metrics</td>
+              <td class="p-4 text-gray-600">A.6.2 + AIIA</td>
               <td class="p-4"><span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded text-xs font-medium">Medium</span></td>
-              <td class="p-4 text-gray-600">NIST has detailed fairness metrics; ISO 42001 covers data quality and impact assessment</td>
             </tr>
+
+            <tr><td class="p-4 font-medium" colspan="3" style="background: #fff7ed; color: #c2410c; font-weight: 700;">MANAGE</td></tr>
             <tr>
-              <td class="p-4 font-medium">MANAGE: Risk treatment</td>
-              <td class="p-4 text-gray-600">Clause 8.3 + Annex A controls</td>
+              <td class="p-4">Risk treatment & response</td>
+              <td class="p-4 text-gray-600">Clause 8.3 + Annex A</td>
               <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
-              <td class="p-4 text-gray-600">Risk treatment + control implementation</td>
             </tr>
             <tr>
-              <td class="p-4 font-medium">MANAGE: Incident response</td>
+              <td class="p-4">Incident response & recovery</td>
               <td class="p-4 text-gray-600">A.7.2 + Clause 10.1</td>
               <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
-              <td class="p-4 text-gray-600">Incident reporting + corrective actions</td>
             </tr>
             <tr>
-              <td class="p-4 font-medium">Third-party AI management</td>
-              <td class="p-4 text-gray-600">A.9.1, A.9.2, A.9.3</td>
-              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
-              <td class="p-4 text-gray-600">Third-party risk, agreements, and monitoring</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-medium">Transparency & explainability</td>
-              <td class="p-4 text-gray-600">A.7.1, A.7.3, A.8.2</td>
-              <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
-              <td class="p-4 text-gray-600">User info, public disclosure, human oversight</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-medium">Continual improvement</td>
+              <td class="p-4">Continual improvement</td>
               <td class="p-4 text-gray-600">Clause 10.2</td>
               <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-medium">High</span></td>
-              <td class="p-4 text-gray-600">Continual improvement of AI management system</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- Key Differences -->
+    <!-- Related NIST Documents -->
     <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">Key Differences</h2>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div>
-          <h3 class="font-bold text-indigo-800 mb-3">NIST AI 600-1</h3>
-          <ul class="space-y-2 text-sm text-gray-600">
-            <li>• <strong>Voluntary</strong> guidance — not certifiable</li>
-            <li>• <strong>Practical</strong> — detailed "how-to" implementation advice</li>
-            <li>• <strong>Risk-focused</strong> — centered on risk measurement and treatment</li>
-            <li>• <strong>US-centric</strong> — references US regulatory landscape</li>
-            <li>• <strong>Flexible</strong> — adaptable to any organization size or sector</li>
-            <li>• <strong>Detailed metrics</strong> — specific fairness, accuracy, robustness measures</li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-bold text-blue-800 mb-3">ISO 42001</h3>
-          <ul class="space-y-2 text-sm text-gray-600">
-            <li>• <strong>Certifiable</strong> — can get third-party certification</li>
-            <li>• <strong>Structured</strong> — management system with clauses and controls</li>
-            <li>• <strong>Holistic</strong> — covers governance, operations, data, third parties</li>
-            <li>• <strong>Global</strong> — recognized internationally</li>
-            <li>• <strong>Integration-ready</strong> — works with ISO 27001, 9001, etc.</li>
-            <li>• <strong>Audit-based</strong> — designed for external verification</li>
-          </ul>
-        </div>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Related NIST Documents</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener"
+           class="bg-blue-50 border border-blue-200 rounded-xl p-5 hover:shadow-lg hover:border-blue-300 transition-all card-hover group">
+          <div class="text-2xl mb-2">🗺️</div>
+          <h3 class="font-bold text-blue-800 mb-2 group-hover:text-blue-600 transition-colors">NIST AI RMF 1.0 ↗</h3>
+          <p class="text-sm text-blue-700">The parent framework — defines the four core functions (Govern, Map, Measure, Manage). Published January 2023.</p>
+          <div class="mt-3 text-xs text-blue-500 font-medium">nist.gov/itl/ai-risk-management-framework</div>
+        </a>
+        <a href="https://airc.nist.gov/AI_RMF_Interactivity/AI_RMF_Playbook" target="_blank" rel="noopener"
+           class="bg-purple-50 border border-purple-200 rounded-xl p-5 hover:shadow-lg hover:border-purple-300 transition-all card-hover group">
+          <div class="text-2xl mb-2">📖</div>
+          <h3 class="font-bold text-purple-800 mb-2 group-hover:text-purple-600 transition-colors">NIST AI 600-1 Playbook ↗</h3>
+          <p class="text-sm text-purple-700">Practical, actionable guidance with specific recommendations for each AI RMF function. Published January 2024.</p>
+          <div class="mt-3 text-xs text-purple-500 font-medium">airc.nist.gov/AI_RMF_Interactivity/AI_RMF_Playbook</div>
+        </a>
+        <a href="https://csrc.nist.gov/publications/detail/sp/800-218a/final" target="_blank" rel="noopener"
+           class="bg-green-50 border border-green-200 rounded-xl p-5 hover:shadow-lg hover:border-green-300 transition-all card-hover group">
+          <div class="text-2xl mb-2">🔒</div>
+          <h3 class="font-bold text-green-800 mb-2 group-hover:text-green-600 transition-colors">NIST SP 800-218A ↗</h3>
+          <p class="text-sm text-green-700">Secure Software Development practices for AI systems — complements ISO 42001 security requirements. Published February 2023.</p>
+          <div class="mt-3 text-xs text-green-500 font-medium">csrc.nist.gov/publications/detail/sp/800-218a/final</div>
+        </a>
       </div>
     </div>
 
     <!-- Practical Advice -->
-    <div class="grid md:grid-cols-2 gap-6 mb-8">
-      <div class="bg-green-50 border border-green-200 rounded-xl p-6">
-        <h3 class="font-bold text-green-900 mb-3">Best of Both Worlds</h3>
-        <ul class="space-y-2 text-sm text-green-800">
-          <li class="flex items-start gap-2"><span>✓</span> Use <strong>NIST 600-1</strong> for detailed risk measurement guidance</li>
-          <li class="flex items-start gap-2"><span>✓</span> Use <strong>ISO 42001</strong> for the management system structure</li>
-          <li class="flex items-start gap-2"><span>✓</span> NIST provides the "how"; ISO 42001 provides the "what"</li>
-          <li class="flex items-start gap-2"><span>✓</span> Together they cover governance, operations, risk, and compliance</li>
-          <li class="flex items-start gap-2"><span>✓</span> Many organizations implement both for comprehensive coverage</li>
-        </ul>
-      </div>
-      <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-6">
-        <h3 class="font-bold text-indigo-900 mb-3">Implementation Approach</h3>
-        <ul class="space-y-2 text-sm text-indigo-800">
-          <li class="flex items-start gap-2"><span>1.</span> <span>Implement ISO 42001 as the management system backbone</span></li>
-          <li class="flex items-start gap-2"><span>2.</span> <span>Use NIST 600-1 guidance to enhance risk assessment depth</span></li>
-          <li class="flex items-start gap-2"><span>3.</span> <span>Apply NIST fairness/bias metrics in AI system impact assessments</span></li>
-          <li class="flex items-start gap-2"><span>4.</span> <span>Reference NIST 600-1 in documentation for US stakeholders</span></li>
-          <li class="flex items-start gap-2"><span>5.</span> <span>Get ISO 42001 certified for international credibility</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Also mention NIST AI RMF -->
     <div class="bg-gray-900 text-white rounded-2xl p-8">
-      <h2 class="text-2xl font-bold mb-4">Related NIST Documents</h2>
+      <h2 class="text-2xl font-bold mb-6">How to Use All Three Together</h2>
       <div class="grid md:grid-cols-3 gap-6">
         <div>
-          <h3 class="font-semibold text-blue-300 mb-2">NIST AI RMF 1.0</h3>
-          <p class="text-sm text-gray-300">The parent framework — defines the four core functions (Govern, Map, Measure, Manage). AI 600-1 provides the implementation playbook for this.</p>
+          <h3 class="font-semibold text-blue-300 mb-3">🏗️ Implementation Approach</h3>
+          <ol class="space-y-2 text-sm text-gray-300">
+            <li><span class="text-blue-400 font-bold">1.</span> Use <strong>RMF 1.0</strong> to understand the four core functions</li>
+            <li><span class="text-blue-400 font-bold">2.</span> Use <strong>600-1</strong> for detailed implementation guidance per function</li>
+            <li><span class="text-blue-400 font-bold">3.</span> Use <strong>800-218A</strong> to secure your AI development lifecycle</li>
+            <li><span class="text-blue-400 font-bold">4.</span> Map everything to <strong>ISO 42001</strong> for certifiable management system</li>
+          </ol>
         </div>
         <div>
-          <h3 class="font-semibold text-blue-300 mb-2">NIST AI RMF Playbook</h3>
-          <p class="text-sm text-gray-300">AI 600-1 itself — practical, actionable guidance with specific recommendations for each AI RMF function.</p>
+          <h3 class="font-semibold text-purple-300 mb-3">📊 Coverage by Framework</h3>
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li><strong>NIST RMF:</strong> Risk management framework (what)</li>
+            <li><strong>NIST 600-1:</strong> Implementation guidance (how)</li>
+            <li><strong>NIST 800-218A:</strong> Secure development (security)</li>
+            <li><strong>ISO 42001:</strong> Management system (certification)</li>
+          </ul>
         </div>
         <div>
-          <h3 class="font-semibold text-blue-300 mb-2">NIST SP 800-218A</h3>
-          <p class="text-sm text-gray-300">Secure Software Development practices that complement AI security requirements in ISO 42001.</p>
+          <h3 class="font-semibold text-green-300 mb-3">🎯 When to Use What</h3>
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li><strong>US clients:</strong> NIST RMF + 600-1 + ISO 42001</li>
+            <li><strong>EU clients:</strong> ISO 42001 + EU AI Act + NIST reference</li>
+            <li><strong>Global clients:</strong> ISO 42001 (primary) + NIST (supplementary)</li>
+            <li><strong>Dev teams:</strong> 800-218A for secure AI development</li>
+          </ul>
         </div>
       </div>
     </div>
