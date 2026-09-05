@@ -107,9 +107,55 @@ const navItems = [
       <p>ISO 42001 Learning Platform — Internal Training Resource</p>
       <p class="mt-1">Based on ISO/IEC 42001:2023 — Information technology — Artificial intelligence — Management system</p>
       <p class="mt-2 text-gray-400 text-xs">Created by <strong class="text-gray-500">Ruchi Kandpal</strong></p>
+
+      <div class="mt-4 flex flex-col items-center gap-3">
+        <div class="flex items-center gap-3 text-xs text-gray-400">
+          <span class="flex items-center gap-1">👀 Total visits: <strong class="text-gray-500" id="site-pv">…</strong></span>
+          <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+          <span class="flex items-center gap-1">🙋 Unique visitors: <strong class="text-gray-500" id="site-uv">…</strong></span>
+        </div>
+        <a href="https://www.buymeacoffee.com/yourusername" target="_blank" rel="noopener"
+          class="inline-flex items-center gap-2 px-5 py-2 bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-full text-xs font-semibold transition-all hover:gap-3">
+          ☕ Buy me a coffee
+        </a>
+      </div>
     </div>
   </footer>
 </body>
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+<script is:inline>
+(function () {
+  var pvEl = document.getElementById('site-pv');
+  var uvEl = document.getElementById('site-uv');
+  var UV_KEY = 'iso42001-session-uv';
+  var PV_KEY = 'iso42001-session-pv';
+
+  function bumpLocal() {
+    var uv = parseInt(localStorage.getItem(UV_KEY) || '0', 10);
+    var pv = parseInt(localStorage.getItem(PV_KEY) || '0', 10);
+    if (!sessionStorage.getItem(UV_KEY + '-done')) {
+      sessionStorage.setItem(UV_KEY + '-done', '1');
+      uv += 1;
+      localStorage.setItem(UV_KEY, String(uv));
+    }
+    pv += 1;
+    localStorage.setItem(PV_KEY, String(pv));
+    return { uv: uv, pv: pv };
+  }
+
+  setTimeout(function () {
+    var pvVal = pvEl ? pvEl.textContent.trim() : '';
+    var uvVal = uvEl ? uvEl.textContent.trim() : '';
+    if (!pvVal || pvVal === '…' || !uvVal || uvVal === '…') {
+      var c = bumpLocal();
+      if (pvEl) pvEl.textContent = c.pv;
+      if (uvEl) uvEl.textContent = c.uv;
+    } else {
+      bumpLocal();
+    }
+  }, 5000);
+})();
+</script>
 </html>
 
 <style is:global>
