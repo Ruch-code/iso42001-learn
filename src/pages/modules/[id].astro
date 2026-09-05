@@ -16,6 +16,54 @@ const moduleData = learningModules.find(m => m.id === id);
 if (!moduleData) {
   return Astro.redirect('/modules');
 }
+
+function renderMarkdown(content: string): string {
+  const process = (text: string) =>
+    text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/`(.*?)`/g, '<code>$1</code>');
+
+  const html: string[] = [];
+  let list: { tag: string; items: string[] } | null = null;
+
+  const flushList = () => {
+    if (list) {
+      const items = list.items
+        .map(item => {
+          const trimmed = item.trimStart();
+          const isOrdered = /^\d+\. /.test(trimmed);
+          const clean = isOrdered ? trimmed.replace(/^\d+\. /, '') : trimmed.replace(/^- /, '');
+          const indent = item.startsWith('  ') ? 'ml-6 ' : '';
+          return `<li class="${indent}ml-5">${process(clean)}</li>`;
+        })
+        .join('');
+      html.push(`<${list.tag} class="list-disc space-y-1 my-3">${items}</${list.tag}>`);
+      list = null;
+    }
+  };
+
+  for (const raw of content.split('\n')) {
+    const line = raw.trimStart();
+    if (line.startsWith('- ') || line.match(/^\d+\. /)) {
+      const isOrdered = /^\d+\. /.test(line);
+      const tag = isOrdered ? 'ol' : 'ul';
+      if (!list || list.tag !== tag) {
+        flushList();
+        list = { tag, items: [] };
+      }
+      list.items.push(raw);
+      continue;
+    }
+    flushList();
+    if (line.startsWith('# ')) { html.push(`<h1>${process(line.slice(2))}</h1>`); }
+    else if (line.startsWith('## ')) { html.push(`<h2>${process(line.slice(3))}</h2>`); }
+    else if (line.startsWith('### ')) { html.push(`<h3>${process(line.slice(4))}</h3>`); }
+    else if (line.startsWith('|') && line.includes('|')) { /* table rows skipped */ }
+    else if (line === '---') { html.push('<hr class="my-6">'); }
+    else if (line.trim() === '') { /* spacing handled by margins */ }
+    else { html.push(`<p>${process(line)}</p>`); }
+  }
+  flushList();
+  return html.join('');
+}
 ---
 
 <Layout title={`${moduleData.title} - ISO 42001 Learn`} activePage="modules">
@@ -54,23 +102,7 @@ if (!moduleData) {
           </div>
           <h2 class="text-2xl font-bold text-gray-900 mb-6">{lesson.title}</h2>
 
-          <div class="prose max-w-none bg-white rounded-xl border border-gray-200 p-8" set:html={
-            lesson.content.split('\n').map(line => {
-              // Process bold and inline code first for all lines
-              const process = (text: string) =>
-                text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/`(.*?)`/g, '<code>$1</code>');
-              if (line.startsWith('# ')) return `<h1>${process(line.slice(2))}</h1>`;
-              if (line.startsWith('## ')) return `<h2>${process(line.slice(3))}</h2>`;
-              if (line.startsWith('### ')) return `<h3>${process(line.slice(4))}</h3>`;
-              if (line.startsWith('- ')) return `<li>${process(line.slice(2))}</li>`;
-              if (line.startsWith('  - ')) return `<li class="ml-4">${process(line.slice(4))}</li>`;
-              if (line.match(/^\d+\. /)) return `<li>${process(line.replace(/^\d+\. /, ''))}</li>`;
-              if (line.startsWith('|') && line.includes('|')) return null;
-              if (line.startsWith('---')) return '<hr>';
-              if (line.trim() === '') return '<br>';
-              return `<p>${process(line)}</p>`;
-            }).filter(Boolean).join('\n')
-          } />
+          <div class="prose max-w-none bg-white rounded-xl border border-gray-200 p-8" set:html={renderMarkdown(lesson.content)} />
 
           {lesson.bestPractices && lesson.bestPractices.length > 0 && (
             <div class="mt-8 space-y-4">

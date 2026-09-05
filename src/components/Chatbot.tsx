@@ -77,11 +77,16 @@ function formatText(text: string) {
   const lines = text.split('\n');
   return lines.map((line, i) => {
     const cleaned = line.replace(/\*\*(.*?)\*\*/g, (_, b) => `<strong>${b}</strong>`);
+    if (line.trim() === '') return <div key={i} className="h-2" />;
     if (line.startsWith('• ')) {
-      return <div key={i} className="flex gap-2"><span className="text-blue-500">•</span><span dangerouslySetInnerHTML={{ __html: cleaned.slice(2) }} /></div>;
+      return (
+        <div key={i} className="flex gap-2">
+          <span className="text-blue-500">•</span>
+          <span dangerouslySetInnerHTML={{ __html: cleaned.slice(2) }} />
+        </div>
+      );
     }
-    if (line.trim() === '•') return <div key={i} className="h-1" />;
-    return <span key={i} dangerouslySetInnerHTML={{ __html: cleaned }} />;
+    return <span key={i} className="block" dangerouslySetInnerHTML={{ __html: cleaned }} />;
   });
 }
 
