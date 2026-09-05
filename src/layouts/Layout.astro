@@ -3,6 +3,7 @@ import Chatbot from '../components/Chatbot.tsx';
 import FloatingRobot from '../components/FloatingRobot.tsx';
 import BackgroundParticles from '../components/BackgroundParticles.tsx';
 import ScrollAnimations from '../components/ScrollAnimations.tsx';
+import CustomCursor from '../components/CustomCursor.tsx';
 
 interface Props {
   title: string;
@@ -95,6 +96,7 @@ const navItems = [
     <slot />
   </main>
 
+  <CustomCursor client:load />
   <BackgroundParticles />
   <FloatingRobot />
   <Chatbot client:load />
