@@ -4,6 +4,7 @@ import FloatingRobot from '../components/FloatingRobot.tsx';
 import BackgroundParticles from '../components/BackgroundParticles.tsx';
 import ScrollAnimations from '../components/ScrollAnimations.tsx';
 import CustomCursor from '../components/CustomCursor.tsx';
+import { Linkedin } from 'lucide-react';
 
 interface Props {
   title: string;
@@ -106,7 +107,17 @@ const navItems = [
     <div class="max-w-7xl mx-auto px-4 py-6 text-center text-sm text-gray-500">
       <p>ISO 42001 Learning Platform — Internal Training Resource</p>
       <p class="mt-1">Based on ISO/IEC 42001:2023 — Information technology — Artificial intelligence — Management system</p>
-      <p class="mt-2 text-gray-400 text-xs">Created by <strong class="text-gray-500">Ruchi Kandpal</strong></p>
+      <p class="mt-2 text-gray-400 text-xs">
+Created by <strong class="text-gray-500">Ruchi Kandpal</strong>{' '}
+<a
+  href="https://www.linkedin.com/in/ruchi-k/"
+  target="_blank"
+  rel="noopener"
+  class="underline underline-offset-2 text-blue-500 hover:text-blue-600 transition-colors"
+>
+  <Linkedin className="w-4 h-4 mr-1" />
+</a>
+</p>
 
       <div class="mt-4 flex flex-col items-center gap-3">
         <div class="flex items-center gap-3 text-xs text-gray-400">
@@ -133,7 +144,7 @@ const navItems = [
               style="border:1px solid rgba(255,255,255,0.1)"
             >
               <div class="flex items-baseline gap-1 text-xs text-slate-400 mb-2">
-                <span>BTC / ETH address:</span>
+                <span>Ethereum address (sends ETH & ERC‑20 tokens like USDT):</span>
                 <span class="font-mono whitespace-nowrap truncate" title="0xdd1e9C99Fa2D42F48f5c5F0c155b48E9b31b9C42">
                   0xdd1e9C9…
                 </span>
