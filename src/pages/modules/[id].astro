@@ -56,20 +56,19 @@ if (!moduleData) {
 
           <div class="prose max-w-none bg-white rounded-xl border border-gray-200 p-8" set:html={
             lesson.content.split('\n').map(line => {
-              if (line.startsWith('# ')) return `<h1>${line.slice(2)}</h1>`;
-              if (line.startsWith('## ')) return `<h2>${line.slice(3)}</h2>`;
-              if (line.startsWith('### ')) return `<h3>${line.slice(4)}</h3>`;
-              if (line.startsWith('- ')) return `<li>${line.slice(2)}</li>`;
-              if (line.startsWith('  - ')) return `<li class="ml-4">${line.slice(4)}</li>`;
-              if (line.match(/^\d+\. /)) return `<li>${line.replace(/^\d+\. /, '')}</li>`;
+              // Process bold and inline code first for all lines
+              const process = (text: string) =>
+                text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/`(.*?)`/g, '<code>$1</code>');
+              if (line.startsWith('# ')) return `<h1>${process(line.slice(2))}</h1>`;
+              if (line.startsWith('## ')) return `<h2>${process(line.slice(3))}</h2>`;
+              if (line.startsWith('### ')) return `<h3>${process(line.slice(4))}</h3>`;
+              if (line.startsWith('- ')) return `<li>${process(line.slice(2))}</li>`;
+              if (line.startsWith('  - ')) return `<li class="ml-4">${process(line.slice(4))}</li>`;
+              if (line.match(/^\d+\. /)) return `<li>${process(line.replace(/^\d+\. /, ''))}</li>`;
               if (line.startsWith('|') && line.includes('|')) return null;
               if (line.startsWith('---')) return '<hr>';
               if (line.trim() === '') return '<br>';
-              // Bold text
-              const processed = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-              // Inline code
-              const withCode = processed.replace(/`(.*?)`/g, '<code>$1</code>');
-              return `<p>${withCode}</p>`;
+              return `<p>${process(line)}</p>`;
             }).filter(Boolean).join('\n')
           } />
 

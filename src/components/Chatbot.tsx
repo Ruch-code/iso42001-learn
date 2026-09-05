@@ -73,6 +73,18 @@ function getSmartSuggestions(): string[] {
   return suggestions.sort(() => Math.random() - 0.5).slice(0, 3);
 }
 
+function formatText(text: string) {
+  const lines = text.split('\n');
+  return lines.map((line, i) => {
+    const cleaned = line.replace(/\*\*(.*?)\*\*/g, (_, b) => `<strong>${b}</strong>`);
+    if (line.startsWith('• ')) {
+      return <div key={i} className="flex gap-2"><span className="text-blue-500">•</span><span dangerouslySetInnerHTML={{ __html: cleaned.slice(2) }} /></div>;
+    }
+    if (line.trim() === '•') return <div key={i} className="h-1" />;
+    return <span key={i} dangerouslySetInnerHTML={{ __html: cleaned }} />;
+  });
+}
+
 async function callGeminiAPI(query: string, apiKey: string, chatHistory: Message[]): Promise<string> {
   const historyContents = chatHistory.slice(-10).map(m => ({
     role: m.sender === 'user' ? 'user' : 'model',
@@ -342,12 +354,12 @@ export default function Chatbot() {
                       {msg.sender === 'user' ? <User className="w-4 h-4 text-white" /> : <Bot className="w-4 h-4 text-white" />}
                     </div>
                     <div>
-                      <div className={`rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-line ${
+                      <div className={`rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                         msg.sender === 'user'
-                          ? 'bg-blue-600 text-white rounded-tr-sm'
+                          ? 'bg-blue-600 text-white rounded-tr-sm whitespace-pre-line'
                           : 'bg-white text-gray-800 border border-gray-200 rounded-tl-sm shadow-sm'
                       }`}>
-                        {msg.text}
+                        {msg.sender === 'user' ? msg.text : formatText(msg.text)}
                       </div>
 
                       {msg.source && (
