@@ -155,6 +155,28 @@ const navItems = [
   }, 5000);
 })();
 </script>
+
+<script is:inline>
+(() => {
+  const footer = document.querySelector('footer');
+  if (!footer) return;
+  const style = document.createElement('style');
+  style.textContent = `
+    html { perspective: 1000px; }
+    html:hover { transform: rotateX(calc(-1 * var(--mouse-y) * 0.05px)) rotateY(calc(var(--mouse-x) * 0.05px)); transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  `;
+  document.head.appendChild(style);
+  let mouseX = 0, mouseY = 0;
+  const updateTransform = (e) => {
+    const rect = footer.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+    footer.style.setProperty('--mouse-x', mouseX);
+    footer.style.setProperty('--mouse-y', mouseY);
+  };
+  window.addEventListener('mousemove', updateTransform);
+})();
+</script>
 </html>
 
 <style is:global>
