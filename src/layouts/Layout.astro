@@ -114,10 +114,10 @@ const navItems = [
           <span class="w-1 h-1 rounded-full bg-gray-300"></span>
           <span class="flex items-center gap-1">🙋 Unique visitors: <strong class="text-gray-500" id="site-uv">…</strong></span>
         </div>
-        <a href="https://www.buymeacoffee.com/yourusername" target="_blank" rel="noopener"
-          class="inline-flex items-center gap-2 px-5 py-2 bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-full text-xs font-semibold transition-all hover:gap-3">
-          ☕ Buy me a coffee
-        </a>
+        <span class="flex items-center gap-2 text-xs text-slate-400">
+          <span class="text-2xl" style="line-height:1">Ξ</span>
+          <span class="opacity-0 hover:opacity-100 transition-opacity duration-200" title="0xdd1e9C99Fa2D42F48f5c5F0c155b48E9b31b9C42 (Ethereum donation address)">Donate</span>
+        </span>
       </div>
     </div>
   </footer>
@@ -156,46 +156,7 @@ const navItems = [
   }, 5000);
 })();
 </script>
-
-<script is:inline>
-(() => {
-  // 3D tilt effect for ISO 42001 title
-  const title = document.querySelector('.font-bold.text-lg.text-gray-900');
-  if (!title) return;
-  
-  const style = document.createElement('style');
-  style.textContent = `
-    .tilt-container {
-      perspective: 1000px;
-    }
-    .tilt-element {
-      transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-  `;
-  document.head.appendChild(style);
-  
-  let mouseX = 0, mouseY = 0;
-  const updateTransform = (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  };
-  
-  const tick = () => {
-    const element = document.querySelector('.font-bold.text-lg.text-gray-900');
-    if (!element) return;
-    const rect = element.getBoundingClientRect();
-    const x = (mouseX - rect.left) / rect.width - 0.5;
-    const y = (mouseY - rect.top) / rect.height - 0.5;
-    const maxRotate = 8;
-    element.style.transform = `perspective(1000px) rotateY(${y * maxRotate}deg) rotateX(${-x * maxRotate}deg)`;
-    requestAnimationFrame(tick);
-  };
-  
-  window.addEventListener('mousemove', updateTransform);
-  tick();
-})();
-</script>
-</html></html>
+</html>
 
 <style is:global>
   @import '../styles/global.css';
