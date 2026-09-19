@@ -153,7 +153,7 @@ export default function Chatbot() {
     } else {
       setMessages([{
         id: 'welcome',
-        text: "Hi! I'm your ISO 42001 AI assistant 🤖\n\nI can answer questions about:\n• ISO 42001 standard\n• Annex A controls\n• Risk & impact assessment\n• EU AI Act & NIST\n• Implementation tips\n" + (aiEnabled ? "\n💡 I'm powered by Google AI for any question!" : "\n🔧 Add a Gemini API key in settings for unlimited answers!"),
+        text: "Hi! I'm your ISO 42001 AI assistant 🤖\n\nI can answer questions about:\n• ISO 42001 standard\n• Annex A controls\n• Risk & impact assessment\n• EU AI Act & NIST\n• Implementation tips\n" + (aiEnabled ? "\n💡 Chatbot features coming soon!" : "\n🔧 Chatbot features coming soon!"),
         sender: 'bot',
         timestamp: new Date(),
         suggestions: getSmartSuggestions()
@@ -223,7 +223,7 @@ export default function Chatbot() {
       setTimeout(() => {
         const botMsg: Message = {
           id: (Date.now() + 1).toString(),
-          text: "I don't have a pre-loaded answer for that. For unlimited AI-powered answers, add a free Google Gemini API key in Settings! ⚙️\n\nGet your free key at: aistudio.google.com/apikey",
+          text: "I don't have a pre-loaded answer for that. Chatbot features coming soon! ⚙️",
           sender: 'bot',
           timestamp: new Date(),
           suggestions: getSmartSuggestions()
@@ -297,7 +297,7 @@ export default function Chatbot() {
                 <h3 className="font-semibold text-sm">ISO 42001 Assistant</h3>
                 <div className="flex items-center gap-1 text-xs text-blue-100">
                   {aiEnabled ? (
-                    <><Sparkles className="w-3 h-3" /><span>Powered by Google AI</span></>
+                    <><Sparkles className="w-3 h-3" /><span>Chatbot features coming soon!</span></>
                   ) : (
                     <><Key className="w-3 h-3" /><span>Knowledge base only</span></>
                   )}
@@ -322,11 +322,11 @@ export default function Chatbot() {
             <div className="bg-blue-50 border-b border-blue-100 p-4 animate-slide-up">
               <h4 className="font-semibold text-blue-900 text-sm mb-2">🔧 API Settings</h4>
               <p className="text-xs text-blue-700 mb-2">
-                Add a free Google Gemini API key for AI-powered answers to any question.
+                Chatbot features coming soon — stay tuned for AI-powered assistance!
               </p>
-              <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener"
+              <a href="#" target="_blank" rel="noopener"
                 className="text-xs text-blue-600 underline mb-2 inline-block">
-                Get free key at aistudio.google.com/apikey →
+                Chatbot coming soon →
               </a>
               <div className="flex gap-2">
                 <input
@@ -338,7 +338,7 @@ export default function Chatbot() {
                 />
                 <button onClick={handleSaveApiKey}
                   className="px-3 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors whitespace-nowrap">
-                  {apiKeyInput ? 'Save' : 'Clear'}
+                  Chatbot features coming soon
                 </button>
               </div>
               {aiEnabled && (

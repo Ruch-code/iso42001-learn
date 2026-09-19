@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { learningModules } from '../data/learningModules';
+import Flashcard from '../components/Flashcard.astro';
 ---
 
 <Layout title="Home" activePage="home">
@@ -111,52 +112,102 @@ import { learningModules } from '../data/learningModules';
           <span class="text-gray-500">Evidence Examples</span>
         </div>
       </a>
+    </div>
 
-      <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-white md:col-span-2">
-        <div class="text-4xl mb-4">🎯</div>
-        <h2 class="text-xl font-bold mb-2">Quick Start Guide</h2>
-        <p class="text-gray-300 mb-4">New to ISO 42001? Here's the recommended learning path:</p>
-        <ol class="space-y-2 text-sm text-gray-300">
-          <li class="flex items-start gap-2">
-            <span class="text-blue-400 font-bold">1.</span>
-            <span>Start with <strong class="text-white">Module 1: Fundamentals</strong> — understand what ISO 42001 is</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-blue-400 font-bold">2.</span>
-            <span>Study <strong class="text-white">Module 2: Annex A Controls</strong> — master implementation requirements</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-blue-400 font-bold">3.</span>
-            <span>Learn <strong class="text-white">Module 3: Risk & Impact Assessment</strong> — core client deliverables</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-blue-400 font-bold">4.</span>
-            <span>Practice with <strong class="text-white">Modules 4-6</strong> — client engagement and delivery</span>
-          </li>
-        </ol>
+    <!-- Use Cases Section -->
+    <div class="mb-8 animate-on-scroll">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Use Cases</h2>
+      <p class="text-gray-600 mb-4">ISO 42001 finds applications across various industries and company sizes:</p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="p-4 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors">
+          <h3 class="font-bold text-blue-600 text-sm">Financial Services</h3>
+          <p class="text-sm text-gray-600">Banks and insurance companies managing AI risk, regulatory compliance, and customer analytics.</p></div>
+        <div class="p-4 rounded-lg border border-gray-200 hover:border-green-300 transition-colors">
+          <h3 class="font-bold text-green-600 text-sm">Healthcare</h3>
+          <p class="text-sm text-gray-600">Healthcare providers using AI for diagnostic support, patient monitoring, and treatment optimization.</p></div>
+        <div class="p-4 rounded-lg border border-gray-200 hover:border-purple-300 transition-colors">
+          <h3 class="font-bold text-purple-600 text-sm">Technology</h3>
+          <p class="text-sm text-gray-600">SaaS companies integrating AI features, AI model development platforms, and developer tools.</p></div>
+        <div class="p-4 rounded-lg border border-gray-200 hover:border-purple-300 transition-colors">
+          <h3 class="font-bold text-purple-600 text-sm">Government</h3>
+          <p class="text-sm text-gray-600">Government agencies using AI for public service optimization, urban planning, and e-government services.</p>
+        </div>
+      </div>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <div class="p-4 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors">
+          <h3 class="font-bold text-blue-600 text-sm">Startups (1-10 employees)</h3>
+          <p class="text-sm text-gray-600">Quick implementation of AI governance basics, lean compliance approach, leveraging existing ISO 27001 controls.</p>>
+        </div>
+        <div class="p-4 rounded-lg border border-gray-200 hover:border-green-300 transition-colors">
+          <h3 class="font-bold text-green-600 text-sm">Small Businesses (11-50 employees)</h3>
+          <p class="text-sm text-gray-600">Focus on high-impact AI systems, limited resource optimization, leveraging existing ISO 27001 frameworks.</p>
+        </div>
+        <div class="p-4 rounded-lg border border-gray-200 hover:border-purple-300 transition-colors">
+          <h3 class="font-bold text-purple-600 text-sm">Medium Enterprises (51-500 employees)</h3>
+          <p class="text-sm text-gray-600">Comprehensive AI governance framework implementation, dedicated AI governance roles, cross-departmental AI risk management.</p>
+        </div>
+        <div class="p-4 rounded-lg border border-gray-200 hover:border-purple-300 transition-colors">
+          <h3 class="font-bold text-purple-600 text-sm">Large Enterprises (500+ employees)</h3>
+          <p class="text-sm text-gray-600">Full ISO 42001 certification pursuit, dedicated AI governance departments, enterprise-wide AI risk assessment and monitoring.</p>
+        </div>
       </div>
     </div>
 
-    <div class="bg-white rounded-2xl border border-gray-200 p-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Module Overview</h2>
-      <div class="grid gap-4">
-        {learningModules.map((mod) => (
-          <a href={`/modules/${mod.id}`} class="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors group">
-            <span class="text-3xl">{mod.icon}</span>
-            <div class="flex-1">
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-mono bg-gray-100 text-gray-500 px-2 py-0.5 rounded">Module {mod.order}</span>
-                <span class="text-xs text-gray-400">{mod.duration}</span>
-              </div>
-              <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{mod.title}</h3>
-              <p class="text-sm text-gray-500">{mod.description}</p>
-            </div>
-            <span class="text-sm text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
-              Start →
-            </span>
-          </a>
-        ))}
+    <!-- Flashcards Section -->
+    <div class="mt-8 animate-on-scroll">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">📋 Flashcards</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <Flashcard 
+          icon="🛡️"
+          title="ISO 42001 Fundamentals"
+          content="ISO 42001:2023 is the world's first certifiable AI management system standard, following the ISO 27001 structure with 7 clauses and 24 Annex A controls."
+        />
+        <Flashcard 
+          icon="📋"
+          title="Key Concept: AI System"
+          content="An AI system that can, for a given set of inputs, make decisions or predictions that materially affect individuals or society."
+        />
+        <Flashcard 
+          icon="📊"
+          title="Key Concept: AI System Impact Assessment (AIIA)"
+          content="An AIIA evaluates how an AI system may affect people — directly or indirectly — focusing on fairness, privacy, transparency, autonomy, and safety impacts."
+        />
+        <Flashcard 
+          icon="📋"
+          title="Key Concept: AI Risk Assessment"
+          content="The process of identifying, analyzing, and evaluating AI risks based on likelihood and impact, then treating them through mitigate, transfer, avoid, or accept strategies."
+        />
       </div>
+    </div>
+
+    <!-- Progress Tracking Section -->
+    <div class="mt-8 animate-on-scroll" data-overall-progress>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">📊 Your Learning Progress</h2>
+      <div class="bg-white rounded-2xl border border-gray-200 p-8">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-semibold text-gray-900">Overall Progress</h3>
+          <span class="text-lg font-bold text-blue-600" data-overall-progress>0% Complete</span>
+        </div>
+        <div class="progress-bar" data-overall-progress>
+          <div class="progress-fill" style="width: 0%"></div>
+        </div>
+        <p class="text-sm text-gray-500 mt-2" data-progress-text>0 of 6 modules completed</p>
+      </div>
+    </div>
+
+    <!-- Quick Reference Link -->
+    <div class="mt-8 animate-on-scroll">
+      <a 
+        href="/reference" 
+        data-open-reference
+        class="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all group"
+      >
+        <span class="text-2xl">📖</span>
+        <span class="font-semibold">Quick Reference: Annex A Controls</span>
+        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </div>
 </Layout>

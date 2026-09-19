@@ -1,0 +1,218 @@
+---
+---
+<script>
+  // Progress tracking with localStorage
+  const PROGRESS_KEY = 'iso42001-progress';
+  const STORAGE_KEYS = {
+    modules: 'iso42001-modules-progress',
+    lessons: 'iso42001-lessons-progress',
+    checklist: 'iso42001-checklist-progress',
+    notes: 'iso42001-notes'
+  };
+
+  function getProgress() {
+    try {
+      return JSON.parse(localStorage.getItem('iso42001-progress') || '{}');
+    } catch {
+      return {};
+    }
+  }
+
+  function saveProgress(data) {
+    localStorage.setItem('iso42001-progress', JSON.stringify(data));
+  }
+
+  function getModuleProgress(moduleId) {
+    const progress = getProgress();
+    return progress.modules?.[moduleId] || { completed: false, lessons: {} };
+  }
+
+  function setModuleProgress(moduleId, data) {
+    const progress = getProgress();
+    if (!progress.modules) progress.modules = {};
+    progress.modules[moduleId] = { ...progress.modules[moduleId], ...data };
+    localStorage.setItem('iso42001-progress', JSON.stringify(progress));
+  }
+
+  function getLessonProgress(moduleId, lessonId) {
+    const moduleProgress = getModuleProgress(window.location.pathname.split('/')[2] || '');
+    return progress.lessons?.[lessonId]?.completed || false;
+  }
+
+  function setLessonProgress(moduleId, lessonId, completed) {
+    const progress = getProgress();
+    if (!progress.modules) progress.modules = {};
+    if (!progress.modules[moduleId]) progress.modules[moduleId] = { lessons: {} };
+    if (!progress.modules[moduleId].lessons) progress.modules[moduleId].lessons = {};
+    progress.modules[moduleId].lessons[lessonId] = { completed, timestamp: Date.now() };
+    localStorage.setItem('iso42001-progress', JSON.stringify(progress));
+  }
+
+  function getChecklistProgress() {
+    const progress = getProgress();
+    return progress.checklist || {};
+  }
+
+  function setChecklistProgress(itemId, completed) {
+    const progress = getProgress();
+    if (!progress.checklist) progress.checklist = {};
+    progress.checklist[itemId] = { completed, timestamp: Date.now() };
+    localStorage.setItem('iso42001-progress', JSON.stringify(progress));
+  }
+
+  function getNotes() {
+    try {
+      return JSON.parse(localStorage.getItem('iso42001-notes') || '{}');
+    } catch {
+      return {};
+    }
+  }
+
+  function saveNote(moduleId, note) {
+    const notes = getNotes();
+    notes[moduleId] = note;
+    localStorage.setItem('iso42001-notes', JSON.stringify(notes));
+  }
+
+  function getModuleProgress2(moduleId) {
+    const progress = getProgress();
+    return progress.modules?.[moduleId] || { completed: false, lessons: {} };
+  }
+
+  function getOverallProgress() {
+    const progress = getProgress();
+    const modules = progress.modules || {};
+    const totalModules = 6;
+    let completedModules = 0;
+    let totalLessons = 0;
+    let completedLessons = 0;
+
+    Object.values(progress.modules || {}).forEach(mod => {
+      if (mod.completed) completedModules++;
+      Object.values(mod.lessons || {}).forEach(lesson => {
+        totalLessons++;
+        if (lesson.completed) completedLessons++;
+      });
+    });
+
+    return {
+      modules: { completed: completedModules, total: 6 },
+      lessons: { completed: completedLessons, total: totalLessons },
+      percentage: totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0
+    };
+  }
+
+  // Export for use in other components
+  window.ISO42001Progress = {
+    getProgress,
+    saveProgress,
+    getModuleProgress,
+    setModuleProgress,
+    getLessonProgress,
+    setLessonProgress,
+    getChecklistProgress,
+    setChecklistProgress,
+    getNotes,
+    saveNote,
+    getOverallProgress
+  };
+</script>
+
+---
+<script is:inline>
+  // Progress tracking UI component
+  class ProgressTracker {
+    constructor() {
+      this.init();
+    }
+
+    init() {
+      // Listen for progress updates
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'iso42001-progress') {
+          this.updateUI();
+        }
+      });
+      this.updateUI();
+    }
+
+    updateUI() {
+      // Update progress bars on page
+      const progressBars = document.querySelectorAll('[data-progress-bar]');
+      progressBars.forEach(bar => {
+        const moduleId = bar.dataset.moduleId;
+        if (moduleId) {
+          const progress = this.getModuleProgress(moduleId);
+          const fill = bar.querySelector('.progress-fill');
+          const text = bar.querySelector('.progress-text');
+          if (fill) fill.style.width = `${Math.round((Object.keys(progress.lessons || {}).filter(l => l.completed).length / Math.max(Object.keys(progress.lessons || {}).length, 1)) * 100)}%`;
+          if (text) text.textContent = `${Math.round((Object.keys(progress.lessons || {}).filter(l => l.completed).length / Math.max(Object.keys(progress.lessons || {}).length, 1)) * 100)}%`;
+        }
+      });
+
+      // Update overall progress
+      const overallProgress = this.getOverallProgress();
+      const overallBars = document.querySelectorAll('[data-overall-progress]');
+      overallBars.forEach(bar => {
+        const fill = bar.querySelector('.progress-fill');
+        const text = bar.querySelector('.progress-text');
+        if (fill) fill.style.width = `${overallProgress.percentage}%`;
+        if (text) text.textContent = `${overallProgress.percentage}% Complete`;
+      });
+
+      // Update checklist counters
+      const checklists = document.querySelectorAll('[data-checklist-count]');
+      checklists.forEach(el => {
+        const count = Object.values(this.getChecklistProgress() || {}).filter(c => c.completed).length;
+        el.textContent = count;
+      });
+
+      // Update module completion badges
+      document.querySelectorAll('[data-module-complete]').forEach(badge => {
+        const moduleId = badge.dataset.moduleId;
+        const progress = this.getModuleProgress(moduleId);
+        badge.textContent = badge.dataset.moduleCompleted ? '✓ Completed' : 'In Progress';
+        badge.classList.toggle('text-green-600', progress.completed);
+        badge.classList.toggle('text-gray-500', !progress.completed);
+      });
+    }
+
+    getModuleProgress(moduleId) {
+      try {
+        const progress = JSON.parse(localStorage.getItem('iso42001-progress') || '{}');
+        return progress.modules?.[moduleId] || { completed: false, lessons: {} };
+      } catch {
+        return { completed: false, lessons: {} };
+      }
+    }
+
+    getOverallProgress() {
+      const progress = JSON.parse(localStorage.getItem('iso42001-progress') || '{}');
+      const modules = progress.modules || {};
+      let completedModules = 0;
+      let totalLessons = 0;
+      let completedLessons = 0;
+
+      Object.values(modules).forEach(mod => {
+        if (mod.completed) completedModules++;
+        Object.values(modules).forEach(mod => {
+          Object.values(mod.lessons || {}).forEach(lesson => {
+            if (lesson.completed) completedLessons++;
+            totalLessons++;
+          });
+        });
+      });
+
+      return {
+        modules: { completed: Object.values(modules).filter(m => m.completed).length, total: 6 },
+        lessons: { completed: Object.values(modules).reduce((sum, m) => sum + Object.values(m.lessons || {}).filter(l => l.completed).length, 0), total: Object.values(modules).reduce((sum, m) => sum + Object.keys(m.lessons || {}).length, 0) },
+        percentage: totalLessons > 0 ? Math.round((Object.values(modules).reduce((sum, m) => sum + Object.values(m.lessons || {}).filter(l => l.completed).length, 0) / totalLessons) * 100) : 0
+      };
+    }
+  }
+</script>
+
+<div id="progress-tracker" class="hidden" aria-hidden="true">
+  <!-- This component manages progress tracking via localStorage -->
+  <!-- It updates progress bars and completion status across all pages -->
+</div>

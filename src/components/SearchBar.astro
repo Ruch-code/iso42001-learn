@@ -1,0 +1,129 @@
+---
+---
+<script>
+  // Search Bar Component
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    const searchContainer = document.getElementById('search-container');
+
+    if (!searchInput || !searchResults) return;
+
+    // Build search index from page content
+    function buildSearchIndex() {
+      const items = [];
+      const headings = document.querySelectorAll('h2[id], h3[id]');
+      headings.forEach((heading, index) => {
+        if (heading.id && heading.textContent.trim()) {
+          items.push({
+            id: heading.id,
+            title: heading.textContent.trim(),
+            type: 'heading',
+            level: heading.tagName.toLowerCase(),
+            element: heading
+          });
+        }
+      });
+
+      // Add module cards, roadmap items, etc.
+      const cards = document.querySelectorAll('[data-searchable="true"]');
+      cards.forEach((card, index) => {
+        const title = card.querySelector('h2, h3, h4');
+        const description = card.querySelector('p');
+        if (title) {
+          items.push({
+            id: `card-${index}`,
+            title: title.textContent.trim(),
+            description: description?.textContent.trim(),
+            type: 'card',
+            element: card
+          });
+        }
+      });
+
+      searchData = items;
+    }
+
+    // Initialize search index
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', buildSearchIndex);
+    } else {
+      buildSearchIndex();
+    }
+
+    let debounceTimer = null;
+
+    if (!searchInput || !searchResults) return;
+
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        const query = searchInput.value.toLowerCase().trim();
+        if (query.length < 2) {
+          searchResults.classList.add('hidden');
+          return;
+        }
+
+        const results = searchData.filter(item =>
+          item.title.toLowerCase().includes(query) ||
+          (item.description && item.description.toLowerCase().includes(query))
+        ).slice(0, 8);
+
+        if (results.length === 0) {
+          searchResults.innerHTML = '<div class="p-4 text-center text-gray-500 dark:text-gray-400">No results found</div>';
+        } else {
+          searchResults.innerHTML = results.map(item => `
+            <a href="#${item.id}" class="block px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" data-search-result="${item.id}">
+              <div class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full ${item.type === 'heading' ? 'bg-blue-500' : 'bg-green-500'}" aria-hidden="true"></span>
+                <span class="flex-1 min-w-0">
+                  <p class="font-medium text-gray-900 dark:text-white truncate">${item.title}</p>
+                  ${item.description ? `<p class="text-sm text-gray-500 dark:text-gray-400 truncate">${item.description}</p>` : ''}
+                </span>
+              </div>
+            </a>
+          `).join('');
+        }
+        searchResults.classList.remove('hidden');
+      }, 150);
+    });
+
+    // Close results when clicking outside
+    document.addEventListener('click', (e) => {
+      const searchContainer = document.getElementById('search-container');
+      if (searchContainer && !searchContainer.contains(e.target)) {
+        document.getElementById('search-results')?.classList.add('hidden');
+      }
+    });
+
+    // Handle keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('search-results')?.classList.add('hidden');
+        document.getElementById('search-input')?.blur();
+      }
+    });
+  });
+</script>
+
+<div id="search-container" class="hidden md:block">
+  <div class="relative">
+    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M21 21l-4.35-4.35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <input
+      type="search"
+      id="search-input"
+      placeholder="Search modules, clauses, controls..."
+      class="w-full sm:w-64 pl-10 pr-4 py-2 text-sm bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+      placeholder="Search modules, clauses, controls..."
+      aria-label="Search modules, clauses, controls"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+    />
+    <div id="search-results" class="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden hidden divide-y divide-gray-200 dark:divide-gray-700" role="listbox" aria-label="Search results"></div>
+  </div>
+</div>

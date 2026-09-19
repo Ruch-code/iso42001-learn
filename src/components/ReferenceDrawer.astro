@@ -1,0 +1,298 @@
+---
+---
+<script>
+  // Reference Drawer for Annex A Controls
+  document.addEventListener('DOMContentLoaded', () => {
+    const drawer = document.getElementById('reference-drawer');
+    const drawerBackdrop = document.getElementById('reference-drawer-backdrop');
+    const openButtons = document.querySelectorAll('[data-open-reference]');
+    const closeBtn = document.getElementById('close-reference-drawer');
+    const drawer = document.getElementById('reference-drawer');
+    const backdrop = document.getElementById('reference-drawer-backdrop');
+    const closeBtn = document.getElementById('close-reference-drawer');
+    const searchInput = document.getElementById('controls-search');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const controlsList = document.getElementById('controls-list');
+
+    // Sample controls data - in production this would come from data files
+    const controlsData = {
+      'A.2': [
+        { id: 'A.2.1', title: 'AI Policy', category: 'A.2 Policies', description: 'Establish an AI policy aligned with organizational objectives', evidence: 'Documented AI policy approved by top management', guidance: 'Ensure policy covers AI principles, risk appetite, and governance structure' },
+        { id: 'A.2.2', title: 'AI Policy Alignment', category: 'A.2 Policies', description: 'Ensure AI policy is aligned with other organizational policies', evidence: 'Cross-reference matrix with other policies', guidance: 'Map AI policy to ISO 27001, GDPR, and other frameworks' }
+      ],
+      'A.3': [
+        { id: 'A.3.1', title: 'Roles and Responsibilities', category: 'A.3 Organization', description: 'Define roles and responsibilities for AI governance', evidence: 'RACI matrix for AI governance roles', guidance: 'Define AI owner, risk officer, ethics lead' },
+        { id: 'A.3.2', title: 'AI Governance Structure', category: 'A.3 Organization', description: 'Establish AI governance structure with authority and resources', evidence: 'Org chart showing AI governance structure', guidance: 'Ensure governance body has authority and resources' },
+        { id: 'A.3.3', title: 'Reporting on AI Management System', category: 'A.3 Organization', description: 'Establish reporting mechanisms for AI management system performance', evidence: 'Regular reports to top management', guidance: 'Define KPIs and reporting cadence' },
+        { id: 'A.3.4', title: 'Management Review', category: 'A.3 Organization', description: 'Conduct management reviews of AI management system', evidence: 'Documented management review minutes', guidance: 'Review AI performance, incidents, and improvements quarterly' }
+      ],
+      'A.4': [
+        { id: 'A.4.1', title: 'Resource Determination', category: 'A.4 Resources', description: 'Determine and provide resources for AI management system', evidence: 'Resource allocation plan', guidance: 'Include human, technical, and financial resources' },
+        { id: 'A.4.2', title: 'Competence and Awareness', category: 'A.4 Resources', description: 'Ensure competence and awareness for AI roles', evidence: 'Training records and competence matrices', guidance: 'Define required competencies per role' }
+      ],
+      'A.5': [
+        { id: 'A.5.1', title: 'AI System Requirements', category: 'A.5 Lifecycle', description: 'Define and document AI system requirements', evidence: 'Requirements specification document', guidance: 'Include functional, non-functional, ethical, legal, and stakeholder requirements' },
+        { id: 'A.5.2', title: 'AI System Design and Development', category: 'A.5 Lifecycle', description: 'Manage AI system design and development processes', evidence: 'Development methodology documentation', guidance: 'Include fairness, transparency, safety criteria' },
+        { id: 'A.5.3', title: 'Verification and Validation', category: 'A.5 Lifecycle', description: 'Verify and validate AI systems before deployment', evidence: 'V&V test reports', guidance: 'Independent review and validation before deployment' },
+        { id: 'A.5.4', title: 'Deployment', category: 'A.5 Lifecycle', description: 'Manage AI system deployment', evidence: 'Deployment plan and rollback procedures', guidance: 'Phased rollout with monitoring' },
+        { id: 'A.5.5', title: 'Operation and Monitoring', category: 'A.5 Lifecycle', description: 'Operate and monitor AI systems', evidence: 'Monitoring dashboards and alerts', guidance: 'Continuous monitoring for drift, bias, performance' }
+      ],
+      'A.6': [
+        { id: 'A.6.1', title: 'Data Governance', category: 'A.6 Data', description: 'Establish data governance for AI systems', evidence: 'Data governance framework document', guidance: 'Data ownership, quality, privacy, access controls' },
+        { id: 'A.6.2', title: 'Data Quality', category: 'A.6 Data', description: 'Ensure data quality for AI systems', evidence: 'Data quality metrics and validation reports', guidance: 'Accuracy, completeness, consistency, timeliness, representativeness' },
+        { id: 'A.6.3', title: 'Data Provenance and Lineage', category: 'A.6 Data', description: 'Track data provenance and lineage', evidence: 'Data lineage documentation', guidance: 'Track origin, transformation, and usage of data' }
+      ],
+      'A.7': [
+        { id: 'A.7.1', title: 'Information for Users', category: 'A.7 Information', description: 'Provide information to users and affected parties', evidence: 'User documentation and transparency notices', guidance: 'Clear, accessible information about AI system capabilities and limitations' },
+        { id: 'A.7.2', title: 'Incident Reporting', category: 'A.7 Information', description: 'Establish incident reporting processes', evidence: 'Incident reporting procedures and logs', guidance: 'Clear escalation paths and timelines' },
+        { id: 'A.7.3', title: 'Public Disclosure', category: 'A.7 Information', description: 'Manage public disclosure of AI system information', evidence: 'Transparency reports, model cards', guidance: 'Model cards, transparency reports, bias disclosures' },
+        { id: 'A.7.4', title: 'Communication with Regulators', category: 'A.7 Information', description: 'Establish communication with regulatory authorities', evidence: 'Regulatory communication procedures', guidance: 'Proactive engagement with regulators' },
+        { id: 'A.7.5', title: 'Customer and Supplier Communication', category: 'A.7 Information', description: 'Communicate with customers and suppliers about AI systems', evidence: 'Communication procedures and records', guidance: 'Transparent communication about AI capabilities and limitations' }
+      ],
+      'A.8': [
+        { id: 'A.8.1', title: 'AI System Use Policy', category: 'A.8 Use', description: 'Define acceptable use of AI systems', evidence: 'AI use policy document', guidance: 'Acceptable use, shadow AI detection, prohibited uses' },
+        { id: 'A.8.2', title: 'Human Oversight', category: 'A.8 Use', description: 'Ensure appropriate human oversight of AI systems', evidence: 'Human oversight procedures and records', guidance: 'Define oversight levels: in-the-loop, on-the-loop, in-command' },
+        { id: 'A.8.3', title: 'Monitoring AI System Performance', category: 'A.8 Use', description: 'Monitor AI system performance continuously', evidence: 'Monitoring dashboards and alerts', guidance: 'Continuous monitoring for drift, bias, performance' },
+        { id: 'A.8.4', title: 'Maintenance, Updates, and Retirement', category: 'A.8 Use', description: 'Manage AI system maintenance, updates, and retirement', evidence: 'Maintenance procedures and retirement plans', guidance: 'Planned updates, rollback procedures, end-of-life management' },
+        { id: 'A.8.5', title: 'Business Continuity', category: 'A.8 Use', description: 'Ensure business continuity for AI systems', evidence: 'Business continuity plan for AI', guidance: 'Recovery time objectives, backup models, fallback procedures' }
+      ],
+      'A.9': [
+        { id: 'A.9.1', title: 'Third-Party AI Risk Assessment', category: 'A.9 Third Party', description: 'Assess risks of third-party AI systems', evidence: 'Third-party risk assessment reports', guidance: 'Due diligence on AI vendors and models' },
+        { id: 'A.9.2', title: 'Third-Party AI Agreements', category: 'A.9 Third Party', description: 'Establish AI-specific agreements with third parties', evidence: 'Contract clauses for AI-specific terms', guidance: 'Audit rights, data ownership, incident notification, liability, IP, regulatory compliance' },
+        { id: 'A.9.3', title: 'Third-Party AI Monitoring', category: 'A.9 Third Party', description: 'Monitor third-party AI systems', evidence: 'Monitoring and audit reports', guidance: 'Continuous monitoring of vendor AI performance' }
+      ],
+      'A.10': [
+        { id: 'A.10.1', title: 'Procurement Requirements', category: 'A.10 Acquisition', description: 'Define procurement requirements for AI systems', evidence: 'Procurement policy with AI-specific criteria', guidance: 'AI-specific requirements in procurement process' },
+        { id: 'A.10.2', title: 'Supplier Evaluation', category: 'A.10 Acquisition', description: 'Evaluate AI suppliers', evidence: 'Supplier evaluation criteria and results', guidance: 'Technical, legal, ethical, and financial evaluation' }
+      ]
+    };
+</script>
+
+<article id="reference-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-2xl bg-white dark:bg-gray-900 shadow-xl transform transition-transform duration-300 ease-out translate-x-full z-50" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="reference-drawer-title">
+  <div class="flex h-full flex-col">
+    <!-- Header -->
+    <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+      <h2 id="reference-drawer-title" class="text-xl font-semibold text-gray-900 dark:text-white">Annex A Controls Reference</h2>
+      <button
+        id="close-reference-drawer"
+        class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        aria-label="Close reference drawer"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex h-full flex-col">
+      <!-- Header -->
+      <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414c.37.37.37 1.023 0 1.414l-4 4a2 2 0 01-2.828 0l-4-4a2 2 0 01-2.828 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          
+          <h2 id="reference-drawer-title" class="text-xl font-semibold text-gray-900 dark:text-white">Annex A Controls Reference</h2>
+        </div>
+        <button
+          id="close-reference-drawer"
+          class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          aria-label="Close reference drawer"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex h-full flex-col">
+        <!-- Header -->
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+              <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414c.37.37.37 1.023 0 1.414l-4 4a2 2 0 01-2.828 0l-4-4a2 2 0 01-2.828 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            
+            <h2 id="reference-drawer-title" class="text-xl font-semibold text-gray-900 dark:text-white">Annex A Controls Reference</h2>
+          </div>
+          <button
+            id="close-reference-drawer"
+            class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Close reference drawer"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="flex h-full flex-col">
+          <!-- Header -->
+          <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414c.37.37.37 1.023 0 1.414l-4 4a2 2 0 01-2.828 0l-4-4a2 2 0 01-2.828 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              
+              <h2 id="reference-drawer-title" class="text-xl font-semibold text-gray-900 dark:text-white">Annex A Controls Reference</h2>
+            </div>
+            <button
+              id="close-reference-drawer"
+              class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Close reference drawer"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="flex h-full flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414c.37.37.37 1.023 0 1.414l-4 4a2 2 0 01-2.828 0l-4-4a2 2 0 01-2.828 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h2 id="reference-drawer-title" class="text-xl font-semibold text-gray-900 dark:text-white">Annex A Controls Reference</h2>
+              </div>
+              <button
+                id="close-reference-drawer"
+                class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Close reference drawer"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex h-full flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414c.37.37.37 1.023 0 1.414l-4 4a2 2 0 01-2.828 0l-4-4a2 2 0 01-2.828 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h2 id="reference-drawer-title" class="text-xl font-semibold text-gray-900 dark:text-white">Annex A Controls Reference</h2>
+              </div>
+              <button
+                id="close-reference-drawer"
+                class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Close reference drawer"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex h-full flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414c.37.37.37 1.023 0 1.414l-4 4a2 2 0 01-2.828 0l-4-4a2 2 0 01-2.828 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h2 id="reference-drawer-title" class="text-xl font-semibold text-gray-900 dark:text-white">Annex A Controls Reference</h2>
+              </div>
+              <button
+                id="close-reference-drawer"
+                class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Close reference drawer"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex h-full flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414c.37.37.37 1.023 0 1.414l-4 4a2 2 0 01-2.828 0l-4-4a2 2 0 01-2.828 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h2 id="reference-drawer-title" class="text-xl font-semibold text-gray-900 dark:text-white">Annex A Controls Reference</h2>
+              </div>
+              <button
+                id="close-reference-drawer"
+                class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Close reference drawer"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex-1 overflow-y-auto p-6">
+            <!-- Search/Filter -->
+            <div class="mb-6">
+              <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8" stroke-width="2"/>
+                  <path d="M21 21l-4.35-4.35" stroke-width="2"/>
+                </svg>
+                <input
+                  type="text"
+                  id="controls-search"
+                  placeholder="Search controls..."
+                  class="w-full pl-10 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Search controls..."
+                  placeholder="Search controls..."
+                  autocomplete="off"
+                />
+                <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5" stroke-width="2"/>
+                  <path d="M3 9h18" stroke-width="2"/>
+                  <path d="M9 15h12" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="mb-4 flex flex-wrap gap-2" id="category-filters">
+              <button class="filter-btn active px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400" data-filter="all">All Controls</button>
+              <button class="filter-btn px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300" data-filter="A.2">A.2 Policies</button>
+              <button class="filter-btn px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300" data-filter="A.3">A.3 Organization</button>
+              <button class="filter-btn px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300" data-filter="A.4">A.4 Resources</button>
+              <button class="filter-btn px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300" data-filter="A.5">A.5 Lifecycle</button>
+              <button class="filter-btn px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300" data-filter="A.6">A.6 Data</button>
+              <button class="filter-btn px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300" data-filter="A.7">A.7 Information</button>
+              <button class="filter-btn px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300" data-filter="A.8">A.8 Use</button>
+              <button class="filter-btn px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300" data-filter="A.9">A.9 Third Party</button>
+              <button class="filter-btn px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300" data-filter="A.10">A.10 Acquisition</button>
+            </div>
+          </div>
+
+          <!-- Controls List -->
+          <div id="controls-list" class="space-y-4">
+            <!-- Controls will be rendered here by JavaScript -->
+            <div class="text-center py-12 text-gray-500 dark:text-gray-400">
+              <svg class="w-12 h-12 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5l3 3m0 0l3-3m-3-3h6" />
+              </svg>
+              <p class="text-gray-500 dark:text-gray-400">Loading controls...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,60 @@
+---
+---
+<script> client:only="resolve"
+  // Mobile Menu Toggle Functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+    const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+
+    function openMobileMenu() {
+      const overlay = document.getElementById('mobile-menu-overlay');
+      const panel = document.getElementById('mobile-menu-panel');
+      if (overlay && panel) {
+        overlay.style.display = 'block';
+        panel.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('mobile-menu-btn')?.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    function closeMobileMenu() {
+      const overlay = document.getElementById('mobile-menu-overlay');
+      const panel = document.getElementById('mobile-menu-panel');
+      if (overlay && panel) {
+        overlay.style.display = 'none';
+        panel.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+        document.getElementById('mobile-menu-btn')?.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    // Close button
+    const closeBtn = document.getElementById('close-mobile-menu');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeMobileMenu);
+    }
+
+    // Close on overlay click
+    const overlay = document.getElementById('mobile-menu-overlay');
+    if (overlay) {
+      overlay.addEventListener('click', closeMobileMenu);
+    }
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileMenu();
+      }
+    });
+
+    // Close on link click
+    const mobileMenuLinks = document.querySelectorAll('#mobile-menu-panel a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    });
+  });
+</script>
