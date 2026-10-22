@@ -10,6 +10,8 @@ export default defineConfig({
   integrations: [react()],
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss({
+      darkMode: 'class'
+    })]
   }
 });
