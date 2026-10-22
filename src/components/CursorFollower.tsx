@@ -93,7 +93,7 @@ export function CursorFollower() {
       cursorMountedRef.current ? requestAnimationFrame(animate) : cancelAnimationFrame(rafRef.current);
     };
 
-    const rafRef.current = requestAnimationFrame(animate);
+    rafRef.current = requestAnimationFrame(animate);
 
     // Cleanup on unmount
     return () => {
@@ -154,7 +154,7 @@ export function CursorFollower() {
         data-testid="cursor-dot"
       />
 
-      {/* Ring - follows pointer -->
+      {/* Ring - follows pointer */}
       <div
         style={{
           position: "absolute",
