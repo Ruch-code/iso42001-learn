@@ -12,9 +12,54 @@ import Layout from '../layouts/Layout.astro';
       <p class="text-gray-600 text-lg">The EU AI Act is the world's first comprehensive AI law. ISO 42001 helps demonstrate conformity with its requirements.</p>
     </div>
 
-    <!-- What is EU AI Act -->
-    <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">What is the EU AI Act?</h2>
+    <!-- Tab Navigation -->
+    <div class="mb-8 border-b border-gray-200 dark:border-gray-700">
+      <nav class="flex gap-1" aria-label="Content tabs">
+        <button
+          id="tab-euai-act"
+          class="tab px-4 py-2 text-sm font-medium rounded-t-lg transition-colors border-b-2 border-blue-600 bg-blue-50 text-blue-700"
+          data-tab="euai-act"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panel-euai-act"
+        >
+          EU AI Act
+        </button>
+        <button
+          id="tab-iso-overlap"
+          class="tab px-4 py-2 text-sm font-medium rounded-t-lg transition-colors text-gray-500 hover:text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
+          data-tab="iso-overlap"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-iso-overlap"
+        >
+          ISO 42001 Overlap
+        </button>
+        <button
+          id="tab-edp"
+          class="tab px-4 py-2 text-sm font-medium rounded-t-lg transition-colors text-gray-500 hover:text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
+          data-tab="edp"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-edp"
+        >
+          Endpoint & Data Protection
+        </button>
+      </nav>
+    </div>
+
+    <!-- Tab Panels -->
+    <div id="tab-panels">
+      <!-- EU AI Act Tab -->
+      <div
+        id="panel-euai-act"
+        role="tabpanel"
+        aria-labelledby="tab-euai-act"
+        class="tab-panel"
+      >
+        <!-- What is EU AI Act -->
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">What is the EU AI Act?</h2>
       <p class="text-gray-600 mb-4">The EU AI Act (Regulation (EU) 2024/1689) is a regulation that came into force on <strong>August 1, 2024</strong>. It creates a legal framework for AI in the European Union based on risk levels.</p>
       
       <div class="grid md:grid-cols-4 gap-4 mb-6">
