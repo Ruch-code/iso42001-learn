@@ -103,7 +103,7 @@ import Layout from '../layouts/Layout.astro';
         </label>
         <label class="checklist-item flex items-center gap-4 p-4 cursor-pointer hover:bg-gray-50 transition">
           <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500" data-week="1" data-index="1">
-          <div><p class="font-medium text-gray-900">Read Annex A Controls (A.2-A.9)</p><p class="text-sm text-gray-500">Learn all 24 controls across policy, organization, resources, data, development, operations, assessment, and third parties</p></div>
+          <div><p class="font-medium text-gray-900">Read Annex A Controls (A.2-A.10)</p><p class="text-sm text-gray-500">Learn all 38 controls across policy, organization, resources, data, development, operations, assessment, and third parties</p></div>
         </label>
         <label class="checklist-item flex items-center gap-4 p-4 cursor-pointer hover:bg-gray-50 transition">
           <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500" data-week="1" data-index="2">
@@ -323,4 +323,349 @@ import Layout from '../layouts/Layout.astro';
       updateUI();
     });
   </script>
+
+  <!-- Stage 4: Surveillance & Maintenance (Year 2-3) -->
+  <div id="stage-4" class="mb-8 animate-on-scroll">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Stage 4: Surveillance & Maintenance</h2>
+    <p class="text-gray-600 mb-4">Maintain the AIMS through regular surveillance audits and continual improvement. Two surveillance audits occur in Years 2 and 3, not once per year for three years. The recertification audit takes place in Year 3, before certificate expiry.</p>
+    
+    <!-- 4.1 Post-certification transition -->
+    <section id="4-1" class="mb-6">
+      <h3 class="text-xl font-bold text-gray-900 mb-3">4.1 Post-certification transition (Months 1-3)</h3>
+      <p class="text-gray-600 mb-4">Close out Stage 2 minor nonconformities within the certification body's deadline; verify effectiveness. Hand over from implementation project to BAU ownership; RACI for ongoing AIMS operation. Build a 3-year compliance calendar (internal audits, management reviews, risk reviews, AI impact assessments, training, surveillance dates).</p>
+    </section>
+    
+    <!-- 4.2 Ongoing operation of the AIMS -->
+    <section id="4-2" class="mb-6">
+      <h3 class="text-xl font-bold text-gray-900 mb-3">4.2 Ongoing operation of the AIMS</h3>
+      <ul class="list-disc list-inside text-gray-600 mb-4">
+        <li>AI system inventory maintenance and change triggers (new model, retraining, new data source, new use case, vendor/model provider change, decommissioning)</li>
+        <li>Periodic AI risk assessment and AI system impact assessment refresh (Clause 6.1, 8.2-8.4)</li>
+        <li>Statement of Applicability review</li>
+        <li>Third-party / AI supplier monitoring (A.10)</li>
+        <li>Data quality, provenance and model monitoring (drift, bias, performance), incident logging</li>
+        <li>Competence and awareness refresh training (Clause 7.2, 7.3)</li>
+        <li>Documented information control and version history</li>
+      </ul>
+    </section>
+    
+    <!-- 4.3 In-depth Performance Evaluation (Clause 9) -->
+    <section id="4-3" class="mb-6">
+      <h3 class="text-xl font-bold text-gray-900 mb-3">4.3 In-depth Performance Evaluation (Clause 9)</h3>
+      <p class="text-gray-600 mb-4">The most detailed part of Stage 4:</p>
+      <div class="bg-white rounded-lg border border-gray-200 p-4 mb-6">
+        <h4 class="font-medium text-gray-700 mb-3">9.1 Monitoring, measurement, analysis and evaluation</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full caption-bottom text-sm">
+            <caption class="text-gray-500 text-sm mb-4">KPI/KRI Table</caption>
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Metric</th>
+                <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">What it measures</th>
+                <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Example target</th>
+                <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Data source</th>
+                <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Frequency</th>
+                <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Owner</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">% AI systems with current impact assessment</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Coverage of AIIA completion</td>
+                <td class="text-xs text-gray-500 py-3 px-4">100%</td>
+                <td class="text-xs text-gray-500 py-3 px-4">AIIA registry</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Quarterly</td>
+                <td class="text-xs text-gray-500 py-3 px-4">AI Governance Lead</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">% risk treatment actions closed on time</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Timeliness of corrective actions</td>
+                <td class="text-xs text-gray-500 py-3 px-4">90%</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Risk register</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Monthly</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Risk Manager</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">Model drift alerts resolved within SLA</td>
+                <td class="text-xs text-gray-500 py-3 px-4">AI model performance degradation</td>
+                <td class="text-xs text-gray-500 py-3 px-4">24 hours</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Monitoring system</td>
+                <td class="text-xs text-gray-500 py-3 px-4">ML Engineering</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">Fairness/bias metric deviations</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Discriminatory outcomes detection</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Within acceptable threshold</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Bias audit reports</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Monthly</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Ethics Officer</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">AI incidents by severity</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Number and severity of incidents</td>
+                <td class="text-xs text-gray-500 py-3 px-4">0 critical per quarter</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Incident log</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Monthly</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Security Team</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">Mean time to close nonconformities</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Efficiency of corrective action process</td>
+                <td class="text-xs text-gray-500 py-3 px-4">14 days</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Corrective action records</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Monthly</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Quality Manager</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">Training completion rate</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Percentage of trained staff</td>
+                <td class="text-xs text-gray-500 py-3 px-4">100%</td>
+                <td class="text-xs text-gray-500 py-3 px-4">LMS records</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Semi-annually</td>
+                <td class="text-xs text-gray-500 py-3 px-4">HR & AI Governance</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">% suppliers assessed</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Vendor risk coverage</td>
+                <td class="text-xs text-gray-500 py-3 px-4">100% critical suppliers</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Supplier risk register</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Annually</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Procurement</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">Overdue control evidence</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Outstanding audit evidence</td>
+                <td class="text-xs text-gray-500 py-3 px-4">0 overdue items</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Audit preparation</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Monthly</td>
+                <td class="text-xs text-gray-500 py-3 px-4">AI Governance Lead</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">Objectives achievement</td>
+                <td class="text-xs text-gray-500 py-3 px-4">KPI attainment against AI objectives</td>
+                <td class="text-xs text-gray-500 py-3 px-4">90% objectives on track</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Objective tracking spreadsheet</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Quarterly</td>
+                <td class="text-xs text-gray-500 py-3 px-4">AI Governance Lead</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">Policy exceptions open</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Active policy deviations</td>
+                <td class="text-xs text-gray-500 py-3 px-4">0 open exceptions</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Policy exception register</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Semi-annually</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Top Management</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="text-xs font-medium text-gray-600 py-3 px-4">Human oversight interventions logged</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Number of human interventions in AI decisions</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Within normal range</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Oversight logs</td>
+                <td class="text-xs text-gray-500 py-3 px-4">Quarterly</td>
+                <td class="text-xs text-gray-500 py-3 px-4">AI Governance Lead</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-gray-500 text-sm mt-4">How to evaluate effectiveness (not just existence) of controls: design vs operating effectiveness, sampling approach, evidence types (inquiry, observation, inspection, reperformance), rating scale (Effective / Partially effective / Ineffective) with definitions.</p>
+      </div>
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <h4 class="font-medium text-gray-700 mb-3">9.2 Internal audit programme</h4>
+        <p class="text-gray-600 mb-4">Risk-based 3-year plan so all clauses and all applicable Annex A controls are covered across the cycle. Auditor independence and competence per ISO/IEC 17021-1.</p>
+        <table class="w-full caption-bottom text-sm">
+          <caption class="text-gray-500 text-sm mb-4">Sample Internal Audit Checklist (8 areas)</caption>
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Audit Area</th>
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Clause / Control</th>
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Finding Grading</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Context of organisation</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Clause 4</td>
+              <td class="text-xs font-medium text-green-500 py-3 px-4">OFI</td>
+            </tr>
+            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Leadership</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Clause 5</td>
+              <td class="text-xs font-medium text-green-500 py-3 px-4">OFI</td>
+            </tr>
+            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Planning</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Clause 6</td>
+              <td class="text-xs font-medium text-green-500 py-3 px-4">OFI</td>
+            </tr>
+            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Support</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Clause 7</td>
+              <td class="text-xs font-medium text-green-500 py-3 px-4">OFI</td>
+            </tr>
+            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Operation</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Clause 8</td>
+              <td class="text-xs font-medium text-green-500 py-3 px-4">OFI</td>
+            </tr>
+            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Performance evaluation</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Clause 9</td>
+              <td class="text-xs font-medium text-green-500 py-3 px-4">OFI</td>
+            </tr>
+            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Annex A control: AI risk assessment</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">A.6</td>
+              <td class="text-xs font-medium text-green-500 py-3 px-4">OFI</td>
+            </tr>
+            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Annex A control: AI impact assessment</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">A.7</td>
+              <td class="text-xs font-medium text-green-500 py-3 px-4">OFI</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="text-gray-500 text-sm mt-4">Finding grading definitions: Major NC (nonconformity causing systemic failure), Minor NC (nonconformity requiring correction), OFI (opportunity for improvement), Observation (observation without finding).</p>
+      </div>
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <h4 class="font-medium text-gray-700 mb-3">9.3 Management review</h4>
+        <p class="text-gray-600 text-sm mb-3">All required inputs and outputs per ISO/IEC 42001 Clause 9.3, as a two-column table:</p>
+        <table class="w-full caption-bottom text-sm">
+          <caption class="text-gray-500 text-sm mb-4">Management Review Inputs and Outputs</caption>
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Inputs</th>
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Outputs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Status of corrective actions</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Minutes of review, revised corrective action register</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Results of internal audit</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Minutes of review, updated risk register</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Performance KPI results</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Minutes of review, KPI dashboard, improvement register</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Nonconformities identified</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Minutes of review, corrective action plans</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Changes in internal/external issues</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Minutes of review, revised scope or risk assessment</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Opportunities for improvement</td>
+              <td class="text-xs font-medium text-gray-600 py-3 px-4">Minutes of review, improvement register, action plan</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="text-gray-500 text-sm mt-4">Sample agenda: 1) Approval of previous minutes, 2) Review of KPI results, 3) Review of internal audit findings, 4) Change management review, 5) Risk assessment update, 6) Decision on resource allocation, 7) Agreement on improvement actions, 8) Date of next review. Minimum frequency: at least annually.</p>
+      </div>
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <h4 class="font-medium text-gray-700 mb-3">Maturity scoring: 1-5 model for AIMS</h4>
+        <p class="text-gray-600 text-sm mb-3">Criteria per level to show year-over-year progression:</p>
+        <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
+          <li><strong>Level 1 – Initial:</strong> AIMS ad-hoc, reactive, few documented processes, success depends on individual effort</li>
+          <li><strong>Level 2 – Managed:</strong> Some documented processes, consistent application in some areas, metrics beginning to be tracked</li>
+          <li><strong>Level 3 – Defined:</strong> Documented processes across the organisation, consistent application, metrics established and tracked</li>
+          <li><strong>Level 4 – Quantitatively managed:</strong> Metrics used for control, quantitative quality targets, predictable outcomes</li>
+          <li><strong>Level 5 – Optimising:</strong> Continuous process improvement, innovative approaches, proactive risk detection, benchmarked against peers</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- 4.4 Improvement (Clause 10) -->
+    <section id="4-4" class="mb-6">
+      <h3 class="text-xl font-bold text-gray-900 mb-3">4.4 Improvement (Clause 10)</h3>
+      <p class="text-gray-600 mb-4">Nonconformity and corrective action workflow: detection, containment, root cause analysis (5 Whys / fishbone), correction, corrective action, effectiveness verification, closure. Render as a step diagram using existing styling.</p>
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <h4 class="font-medium text-gray-700 mb-3">Continual improvement register fields</h4>
+        <table class="w-full caption-bottom text-sm">
+          <caption class="text-gray-500 text-sm mb-4">Continual Improvement Register</caption>
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Issue</th>
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Root Cause</th>
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Corrective Action</th>
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Owner</th>
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Target Date</th>
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Status</th>
+              <th class="text-left text-xs font-semibold text-gray-600 py-3 px-4">Closure Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+            <td class="text-xs font-medium text-gray-600 py-3 px-4">Stale risk register</td>
+            <td class="text-xs font-medium text-gray-600 py-3 px-4">Risk assessments not updated after model changes</td>
+            <td class="text-xs font-medium text-gray-600 py-3 px-4">Update risk register with change triggers</td>
+            <td class="text-xs font-medium text-gray-600 py-3 px-4">AI Governance Lead</td>
+            <td class="text-xs font-medium text-gray-600 py-3 px-4">Next review</td>
+            <td class="text-xs font-medium text-gray-600 py-3 px-4">In progress</td>
+            <td class="text-xs font-medium text-gray-600 py-3 px_4"></td>
+          </tr>
+          <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+            <td class="text-xs font-medium text-gray-600 py-3 px_4">Management review missing inputs</td>
+            <td class="text-xs font-medium text-gray_600 py_3 px_4">Leadership not reviewing all required inputs</td>
+            <td class="text-xs font-medium text-gray_600 py_3 px_4">Ensure all Clause 9.3 inputs are captured</td>
+            <td class="text-xs font-medium text-gray_600 py_3 px_4">AI Governance Lead</td>
+            <td class="text-xs font-medium text-gray_600 py_3 px_4">Next review</td>
+            <td class="text-xs font-medium text-gray_600 py_3 px_4">Pending</td>
+            <td class="text-xs font-medium text-gray_600 py_3 px_4"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
+  <!-- 4.5 Surveillance audits 1 & 2 -->
+  <section id="4-5" class="mb-6">
+    <h3 class="text-xl font-bold text-gray-900 mb-3">4.5 Surveillance audit 1 (Year 2) and Surveillance audit 2 (Year 3)</h3>
+    <p class="text-gray-600 mb-4">What the CB typically samples: mandatory each time (internal audit, management review, corrective actions from previous audit, use of certificate/logo, complaints, changes to scope or AI systems) plus a rotating sample of clauses and Annex A controls.</p>
+    <div class="bg-white rounded-lg border border-gray-200 p-4">
+      <p class="text-gray-500 text-sm mb-3">60 / 30 / 7 day preparation checklist before each surveillance audit:</p>
+      <ul class="list-disc list-inside text-gray-600">
+        <li><strong>60 days:</strong> Review internal audit results, management review minutes, corrective action effectiveness, AI system inventory, risk register currency</li>
+        <li><strong>30 days:</strong> Gather sampled clause/control evidence, update SOA, prepare management presentation, verify documentation accessibility</li>
+        <li><strong>7 days:</strong> Final document checklist, auditor liaison, travel arrangements, internal pre-audit briefing</li>
+      </ul>
+    </div>
+    <div class="bg-yellow-50 rounded-lg border border-yellow-200 p-4">
+      <p class="text-yellow-700 text-sm mb-3">Common surveillance findings and how to avoid them:</p>
+      <ul class="list-disc list-inside text-yellow-700">
+        <li>Stale risk register — update after every significant AI system change</li>
+        <li>Impact assessments not refreshed after model change — schedule periodic re-assessment</li>
+        <li>Management review missing required inputs — use the Clause 9.3 two-column table</li>
+        <li>Internal audit not covering all clauses — use the risk-based 3-year plan</li>
+        <li>Untracked new AI systems — log new systems in inventory immediately, assess risk promptly</li>
+      </ul>
+    </div>
+    <div class="bg-red-50 rounded-lg border border-red-200 p-4">
+      <p class="text-red-700 text-sm mb-3">Consequences of unresolved major NCs (described neutrally):</p>
+      <ul class="list-disc list-inside text-red-700">
+        <li>Nonconformity that endangers the validity of the certificate may lead to suspension</li>
+        <li>Persistent unresolved major NCs may lead to certificate withdrawal</li>
+        <li>CB may require corrective action plan with specified deadline before allowing continuation</li>
+      </ul>
+    </div>
+  </section>
+  
+  <!-- 4.6 Recertification (Year 3) -->
+  <section id="4-6" class="mb-6">
+    <h3 class="text-xl font-bold text-gray-900 mb-3">4.6 Recertification (Year 3)</h3>
+    <p class="text-gray-600 mb-4">Timing: recertification audit completed before expiry; start planning about 6 months ahead.</p>
+    <p class="text-gray-600">Scope: full system review, performance over the whole 3-year cycle, changes in context, applicable standard/regulatory updates (e.g., EU AI Act obligations, ISO/IEC 42005 and 42006 alignment).</p>
+    <p class="text-gray_600 output">Output: renewed 3-year certificate.</p>
+  </section>
+  
+  <!-- 4.7 Year 2-3 timeline -->
+  <section id="4-7" class="mb-6">
+    <h3 class="text-xl font-bold text-gray_900 mb_3">4.7 Year 2-3 timeline</h3>
+    <p class="text-gray_600 text-sm">A visual month-by-month timeline (Months 1-36) showing internal audits, management reviews, risk/impact assessment refreshes, training, Surveillance 1, Surveillance 2, recertification.</p>
+  </section>
+</div>
 </Layout>

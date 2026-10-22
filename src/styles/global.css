@@ -1377,3 +1377,43 @@ html.dark {
     }
   }
 }
+
+
+/* Ensure cursor is always visible and doesn't vanish on scroll */
+body {
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent cursor hiding during scroll */
+html {
+  touch-action: auto;
+}
+
+/* Make sure all interactive elements have proper cursors */
+a, button, input, select, textarea, [role="button"] {
+  cursor: default;
+}
+
+@media (hover: hover) {
+  a:hover {
+    cursor: pointer;
+  }
+  button:hover {
+    cursor: pointer;
+  }
+}
+
+/* Hide on touch/coarse pointers */
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+}
