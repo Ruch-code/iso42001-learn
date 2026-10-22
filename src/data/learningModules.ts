@@ -55,7 +55,7 @@ export const learningModules: LearningModule[] = [
 ISO/IEC 42001:2023 is the **first international standard** for Artificial Intelligence Management Systems (AIMS). Published in December 2023, it provides a framework for organizations to manage AI responsibly.
 
 ## Key Facts
-- **Full name:** ISO/IEC 42001:2023 — Information technology — Artificial intelligence — Management system
+- **Full name:** ISO/IEC 42001:2023, Information technology, Artificial intelligence, Management system
 - **Type:** Certifiable standard (organizations can get certified)
 - **Structure:** Based on Annex SL (same as ISO 27001, ISO 9001, etc.)
 - **Companion documents:** ISO/IEC 42002 (guidance), ISO/IEC 42005 (impact assessment), ISO/IEC 42006 (competence bodies)
@@ -67,10 +67,10 @@ ISO/IEC 42001:2023 is the **first international standard** for Artificial Intell
 - Any entity wanting structured AI governance
 
 ## Why does it matter?
-1. **Regulatory alignment** — Supports EU AI Act, NIST AI RMF, and other frameworks
-2. **Risk management** — Systematic approach to AI risks
-3. **Trust** — Demonstrates responsible AI to customers and stakeholders
-4. **Competitive advantage** — Early adopters gain market credibility`,
+1. **Regulatory alignment** Supports EU AI Act, NIST AI RMF, and other frameworks
+2. **Risk management** Systematic approach to AI risks
+3. **Trust** Demonstrates responsible AI to customers and stakeholders
+4. **Competitive advantage** Early adopters gain market credibility`,
         order: 1,
         type: 'reading',
         duration: '8 min',
@@ -81,7 +81,7 @@ ISO/IEC 42001:2023 is the **first international standard** for Artificial Intell
             description: 'Before diving into ISO 42001 clauses, ensure you understand your client\'s motivation for pursuing certification.',
             tips: [
               'Map ISO 42001 to client\'s business drivers (regulatory, customer demand, competitive)',
-              'Identify which clients are in EU AI Act high-risk categories — ISO 42001 helps demonstrate conformity',
+              'Identify which clients are in EU AI Act high-risk categories, ISO 42001 helps demonstrate conformity',
               'Reference NIST AI RMF alignment to show US regulatory preparedness'
             ],
             commonPitfalls: [
@@ -123,7 +123,7 @@ ISO/IEC 42001:2023 is the **first international standard** for Artificial Intell
 
 The main body of ISO 42001 follows the Plan-Do-Check-Act (PDCA) cycle:
 
-## Clause 4 — Context of the Organization
+## Clause 4: Context of the Organization
 Understand **internal/external issues** and **interested parties** that affect your AI management system.
 
 **Key activities:**
@@ -131,7 +131,7 @@ Understand **internal/external issues** and **interested parties** that affect y
 - Stakeholder mapping (regulators, customers, employees, public)
 - Scope definition — which AI systems, business units, geographies
 
-## Clause 5 — Leadership
+## Clause 5: Leadership
 **Top management** must demonstrate commitment through an AI policy, assigned roles, and integration into business strategy.
 
 **Key activities:**
@@ -139,7 +139,7 @@ Understand **internal/external issues** and **interested parties** that affect y
 - RACI matrix for AI governance
 - AI governance board establishment
 
-## Clause 6 — Planning
+## Clause 6: Planning
 Address **risks and opportunities**, set **AI objectives**, and plan changes. This includes mandatory **AI risk assessment** and **AI system impact assessment**.
 
 **Key activities:**
@@ -148,7 +148,7 @@ Address **risks and opportunities**, set **AI objectives**, and plan changes. Th
 - Setting measurable AI objectives
 - Change management planning
 
-## Clause 7 — Support
+## Clause 7: Support
 Provide **resources, competence, awareness, communication**, and **documented information**.
 
 **Key activities:**
@@ -157,8 +157,8 @@ Provide **resources, competence, awareness, communication**, and **documented in
 - Internal/external communication plans
 - Documentation management
 
-## Clause 8 — Operation
-The largest clause — covers **operational planning, AI system lifecycle, data management, third parties**, and more.
+## Clause 8: Operation
+The largest clause: covers **operational planning, AI system lifecycle, data management, third parties**, and more.
 
 **Key activities:**
 - AI system inventory and classification
@@ -167,7 +167,7 @@ The largest clause — covers **operational planning, AI system lifecycle, data 
 - Third-party management
 - Incident management
 
-## Clause 9 — Performance Evaluation
+## Clause 9: Performance Evaluation
 **Monitor, measure, audit**, and conduct **management reviews**.
 
 **Key activities:**
@@ -176,7 +176,7 @@ The largest clause — covers **operational planning, AI system lifecycle, data 
 - Management review meetings
 - Compliance evaluation
 
-## Clause 10 — Improvement
+## Clause 10: Improvement
 Handle **nonconformities, corrective actions**, and **continual improvement**.
 
 **Key activities:**
@@ -254,7 +254,7 @@ Handle **nonconformities, corrective actions**, and **continual improvement**.
   {
     id: 'mod-2',
     title: 'Annex A Controls Deep Dive',
-    description: 'Master all Annex A controls — the implementation requirements that form the backbone of ISO 42001 compliance.',
+    description: 'Master all Annex A controls: the implementation requirements that form the backbone of ISO 42001 compliance.',
     icon: '🔧',
     order: 2,
     duration: '60 min',
@@ -265,7 +265,7 @@ Handle **nonconformities, corrective actions**, and **continual improvement**.
         title: 'AI Policy & Governance Controls (A.2-A.4)',
         content: `# AI Policy & Governance Controls
 
-## A.2 — AI Policy
+## A.2: AI Policy
 The organization must establish an AI policy that:
 - Is appropriate to the purpose of the organization
 - Includes AI objectives or provides framework for setting them
@@ -274,13 +274,13 @@ The organization must establish an AI policy that:
 - Is documented, communicated, and available to interested parties
 - Is approved by top management
 
-## A.3 — Internal Organization
+## A.3: Internal Organization
 - **A.3.1** Roles and responsibilities for AI governance
 - **A.3.2** AI governance structure with authority and resources
 - **A.3.3** Reporting on AI management system performance
 - **A.3.4** Management review of AI management system
 
-## A.4 — Resources
+## A.4: Resources
 - **A.4.1** Resource determination (human, technical, financial)
 - **A.4.2** Competence and awareness for AI roles`,
         order: 1,
