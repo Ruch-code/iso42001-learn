@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import netlifyIdentity from 'netlify-identity-widget';
 
 interface User {
   id: string;
@@ -39,10 +38,6 @@ const AuthContext = React.createContext<{
   isPending: boolean;
 } | undefined>(undefined);
 
-function isBrowser() {
-  return typeof window !== 'undefined';
-}
-
 function getIdentity() {
   return typeof window !== 'undefined' && window.netlifyIdentity ? window.netlifyIdentity : null;
 }
@@ -75,6 +70,14 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     identity.on('logout', () => setUser(null));
 
     identity.init();
+  }, []);
+
+  // Dynamically load netlify-identity-widget only in browser
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    import('netlify-identity-widget').then(module => {
+      window.netlifyIdentity = module.default;
+    });
   }, []);
 
   const signUp = async (email: string, password: string) => {

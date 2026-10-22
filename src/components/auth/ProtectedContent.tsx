@@ -6,6 +6,7 @@ interface ProtectedContentProps {
 }
 
 export function ProtectedContent({ children, fallback }: ProtectedContentProps) {
+
   const { user, loading, isApproved, isPending } = useAuth();
 
   if (loading) {
@@ -41,9 +42,9 @@ export function ProtectedContent({ children, fallback }: ProtectedContentProps) 
     );
   }
 
-  const user = window.netlifyIdentity.currentUser();
-  const isApproved = user?.app_metadata?.approved === true;
-  const isPending = user?.app_metadata?.pending_approval === true;
+  const netlifyUser = window.netlifyIdentity.currentUser();
+  // isApproved from useAuth hook
+  // isPending available from useAuth hook
 
   if (isPending) {
     return (

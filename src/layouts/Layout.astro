@@ -8,6 +8,7 @@ import AuthWidget from '../components/auth/AuthWidget.tsx';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import MobileMenu from '../components/MobileMenu.astro';
 import SearchBar from '../components/SearchBar.astro';
+import { ProtectedContent } from '../components/auth/ProtectedContent.tsx';
 // import ReferenceDrawer from '../components/ReferenceDrawer.astro';
 import ProgressTracker from '../components/ProgressTracker.astro';
 
@@ -115,7 +116,9 @@ const navItems = [
   
 
   <main class="flex-1 relative z-10">
-    <slot />
+    <ProtectedContent client:load>
+      <slot />
+    </ProtectedContent>
   </main>
 
   
