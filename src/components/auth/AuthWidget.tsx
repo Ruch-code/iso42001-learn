@@ -10,7 +10,7 @@ function getIdentity() {
 }
 
 export default function AuthWidget() {
-  const { user, loading } = useAuth();
+  const { user, loading, isApproved, isPending } = useAuth();
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -44,9 +44,9 @@ export default function AuthWidget() {
 
   if (identity && !identity.currentUser()) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="fixed inset-0 bg-black/50" />
-        <div className="relative bg-white rounded-2xl p-8 w-full max-w-md shadow-xl">
+      <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-black/50" />
+        <div class="relative bg-white rounded-2xl p-8 w-full max-w-md shadow-xl">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
             {mode === 'login' ? 'Sign In' : 'Create Account'}
           </h2>
@@ -106,7 +106,6 @@ export default function AuthWidget() {
       </div>
     );
   }
-
 
   return (
     <div className="fixed bottom-4 right-4 z-50">

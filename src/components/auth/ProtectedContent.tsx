@@ -17,15 +17,8 @@ export function ProtectedContent({ children, fallback }: ProtectedContentProps) 
     );
   }
 
-  if (!window.netlifyIdentity) {
-    return (
-      <div class="text-center py-12 text-gray-500">
-        <p>Loading authentication...</p>
-      </div>
-    );
-  }
-
-  if (!window.netlifyIdentity?.currentUser()) {
+  // Gracefully handle missing auth state - treat as logged out
+  if (!user) {
     return (
       <div class="text-center py-12">
         <p class="text-gray-600 mb-4">Please sign in to access this content.</p>
@@ -41,10 +34,6 @@ export function ProtectedContent({ children, fallback }: ProtectedContentProps) 
       </div>
     );
   }
-
-  const netlifyUser = window.netlifyIdentity.currentUser();
-  // isApproved from useAuth hook
-  // isPending available from useAuth hook
 
   if (isPending) {
     return (
